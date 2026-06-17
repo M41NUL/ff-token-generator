@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Fire Token Generator · CODEX-M41NUL</title>
+<link rel="icon" type="image/jpeg" href="https://i.ibb.co/JRvYQJts/4de10ab6a187.jpg">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+:root {
+  --bg:#000;--bg3:#111;--bg4:#1c1c1e;--bg5:#2c2c2e;--sep:#38383a;
+  --orange:#FF6B00;--orange-dim:rgba(255,107,0,.15);--orange-glow:rgba(255,107,0,.28);
+  --text:#fff;--text2:rgba(235,235,245,.8);--text3:rgba(235,235,245,.55);--text4:rgba(235,235,245,.3);
+  --green:#30d158;--blue:#0a84ff;--red:#ff453a;
+  --r:13px;--rlg:18px;--rxl:22px;
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{font-family:-apple-system,'Inter',BlinkMacSystemFont,sans-serif;background:var(--bg);color:var(--text);min-height:100dvh;overflow-x:hidden;padding-bottom:60px}
+
+/* HEADER */
+.header{padding:32px 20px 0;text-align:center}
+.header h1{font-size:28px;font-weight:700;letter-spacing:-.7px;line-height:1.15;margin-bottom:8px}
+.header p{font-size:13.5px;color:var(--text3);line-height:1.5}
+.header-line{width:36px;height:2px;background:linear-gradient(90deg,transparent,var(--orange),transparent);margin:15px auto 0;border-radius:2px}
+
+/* SECTION */
+.section{margin:28px 16px 0}
+.section-label{font-size:12px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.6px;margin-bottom:10px;padding:0 4px}
+
+/* CARD */
+.card{background:linear-gradient(145deg,#1e1e22,#18181b);border-radius:var(--rlg);border:1px solid #3a3a3e;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.06)}
+
+/* DROPDOWN SELECT ROW */
+.pill-row{padding:14px 16px;border-bottom:1px solid var(--sep);position:relative}
+.sel-row{display:flex;align-items:center;gap:10px;background:#0d0d0f;border:1.5px solid var(--sep);border-radius:12px;padding:10px 14px;cursor:pointer;transition:all .2s}
+.sel-row:hover{border-color:var(--orange-glow)}
+.sel-icon{width:32px;height:32px;border-radius:9px;background:var(--orange-dim);border:1px solid var(--orange-glow);display:flex;align-items:center;justify-content:center;color:var(--orange);font-size:13px;flex-shrink:0;transition:all .2s}
+.sel-info{flex:1}
+.sel-label{font-size:10px;font-weight:600;color:var(--text4);text-transform:uppercase;letter-spacing:.5px;margin-bottom:3px}
+.sel-val{font-size:13.5px;font-weight:700;color:var(--text)}
+.sel-arr{color:var(--text4);font-size:12px;transition:transform .2s}
+
+/* DROPDOWN LIST */
+.drop-list{background:#1c1c1e;border:1px solid var(--sep);border-radius:12px;overflow:hidden;margin-top:6px;display:none;position:absolute;left:16px;right:16px;z-index:100;box-shadow:0 8px 24px rgba(0,0,0,.6)}
+.drop-list.open{display:block;animation:fadeUp .2s ease}
+.drop-item{display:flex;align-items:center;gap:10px;padding:11px 14px;cursor:pointer;transition:background .15s;border-bottom:1px solid rgba(56,56,58,.5)}
+.drop-item:last-child{border-bottom:none}
+.drop-item:hover{background:rgba(255,107,0,.07)}
+.drop-item.active{background:var(--orange-dim)}
+.drop-item.active .di-name{color:var(--orange)}
+.drop-item.active .drop-item-icon{background:var(--orange-dim);border-color:var(--orange);color:var(--orange)}
+.di-info{flex:1}
+.di-name{font-size:13px;font-weight:700}
+.di-code{font-size:10px;color:var(--text4);margin-top:1px;font-weight:600;letter-spacing:.3px}
+.di-check{color:var(--orange);font-size:12px;opacity:0}
+.drop-item.active .di-check{opacity:1}
+.drop-item-icon{width:32px;height:32px;border-radius:9px;background:rgba(255,255,255,.06);border:1px solid var(--sep);display:flex;align-items:center;justify-content:center;color:var(--text3);font-size:13px;flex-shrink:0;transition:all .2s}
+
+/* HOW TO USE */
+.how-section{padding:14px 16px;border-bottom:1px solid var(--sep)}
+.sec-hd{display:flex;align-items:center;gap:8px;margin-bottom:11px}
+.sec-ico{width:22px;height:22px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:10px;background:var(--orange-dim);border:1px solid var(--orange-glow);color:var(--orange)}
+.sec-ttl{font-size:10.5px;font-weight:700;color:var(--text2);letter-spacing:.4px;text-transform:uppercase}
+.step{display:flex;gap:10px;margin-bottom:11px}
+.step:last-child{margin-bottom:0}
+.step-n{min-width:20px;height:20px;border-radius:50%;background:var(--orange-dim);border:1px solid var(--orange-glow);color:var(--orange);font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-top:2px;flex-shrink:0}
+.step-t{font-size:12.5px;color:var(--text3);line-height:1.55}
+.step-t strong{color:var(--text2);font-weight:600}
+.safe-b{display:inline-flex;align-items:center;gap:4px;background:rgba(48,209,88,.1);border:1px solid rgba(48,209,88,.2);color:var(--green);border-radius:100px;padding:2px 9px;font-size:10px;font-weight:600;margin-top:4px}
+.code-row{display:flex;align-items:center;justify-content:space-between;background:rgba(0,0,0,.3);border:1px solid var(--sep);border-radius:9px;padding:7px 10px;margin-bottom:5px;transition:all .2s}
+.code-row:last-of-type{margin-bottom:0}
+.code-row:hover{border-color:rgba(255,107,0,.3);background:rgba(255,107,0,.05)}
+.code-row code{font-family:'Menlo','Monaco',monospace;font-size:10.5px;color:var(--orange)}
+.cpbtn{background:none;border:none;color:var(--text4);cursor:pointer;padding:3px 5px;border-radius:5px;font-size:11px;transition:all .2s;flex-shrink:0}
+.cpbtn:hover{color:var(--text);background:rgba(255,255,255,.07)}
+.url-prev{background:rgba(255,107,0,.04);border:1px solid rgba(255,107,0,.14);border-radius:9px;padding:8px 11px;margin-top:7px;font-family:'Menlo','Monaco',monospace;font-size:10px;color:var(--text3);line-height:1.55;word-break:break-all}
+.yt-tut{display:flex;align-items:center;gap:11px;background:rgba(255,0,0,.07);border:1px solid rgba(255,0,0,.17);border-radius:11px;padding:11px 13px;text-decoration:none;cursor:pointer;transition:all .22s;margin-top:9px}
+.yt-tut:hover{background:rgba(255,0,0,.13);border-color:rgba(255,0,0,.3);transform:translateY(-1px)}
+.yt-ico-wrap{width:34px;height:34px;border-radius:9px;background:rgba(255,0,0,.13);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.yt-ico-wrap i{font-size:16px;color:#ff4444}
+.yt-info{flex:1;min-width:0}
+.yt-title{font-size:12.5px;font-weight:700;color:var(--text)}
+.yt-sub{font-size:10.5px;color:var(--text3);margin-top:1px}
+.yt-arr{color:var(--text4);font-size:10px;flex-shrink:0}
+
+/* PROVIDER */
+.prov-section{padding:13px 16px;border-bottom:1px solid var(--sep)}
+.prov-label{font-size:10px;font-weight:600;color:var(--text4);text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px}
+.prov-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.prov-btn{height:44px;border-radius:11px;background:rgba(255,255,255,.04);border:1px solid var(--sep);display:flex;align-items:center;justify-content:center;text-decoration:none;transition:all .22s;overflow:hidden}
+.prov-btn:hover{background:rgba(255,107,0,.08);border-color:var(--orange-glow);transform:translateY(-2px)}
+.prov-btn:active{transform:scale(.95)}
+.prov-btn img{width:20px;height:20px;object-fit:contain;border-radius:4px}
+.prov-btn i{font-size:18px;color:var(--text2)}
+
+/* INPUT AREA */
+.token-input-area{padding:14px 16px;display:flex;flex-direction:column;gap:10px}
+.token-input-row{display:flex;align-items:center;gap:10px;background:#0d0d0f;border:1.5px solid #3a3a3e;border-radius:12px;padding:10px 14px;transition:border-color .25s,box-shadow .25s}
+.token-input-row:focus-within{border-color:var(--orange);box-shadow:0 0 0 3px rgba(255,107,0,.12)}
+.token-input-row.valid{border-color:var(--green)!important;box-shadow:0 0 0 3px rgba(48,209,88,.12)!important}
+.token-input-row.invalid{border-color:var(--red)!important;box-shadow:0 0 0 3px rgba(255,69,58,.12)!important}
+.field-icon{width:32px;height:32px;border-radius:9px;background:var(--orange-dim);border:1px solid var(--orange-glow);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--orange);font-size:13px;transition:all .2s}
+.token-input-row.valid   .field-icon{background:rgba(48,209,88,.15);border-color:rgba(48,209,88,.35);color:var(--green)}
+.token-input-row.invalid .field-icon{background:rgba(255,69,58,.12);border-color:rgba(255,69,58,.3);color:var(--red)}
+.field-wrap{flex:1;min-width:0}
+.field-label-sm{font-size:10px;font-weight:600;color:var(--text4);text-transform:uppercase;letter-spacing:.5px;margin-bottom:3px}
+.field-input{background:transparent;border:none;outline:none;color:var(--text);font-size:13.5px;font-family:'Menlo','Monaco',monospace;width:100%;-webkit-text-security:disc;text-security:disc}
+.field-input.visible{-webkit-text-security:none;text-security:none}
+.eye-btn{background:none;border:none;color:var(--text4);cursor:pointer;padding:5px;border-radius:7px;display:flex;align-items:center;justify-content:center;transition:color .15s,background .15s;flex-shrink:0;font-size:15px;width:30px;height:30px}
+.eye-btn:hover{color:var(--text2);background:rgba(255,255,255,.07)}
+.eye-btn.on{color:var(--orange)}
+.token-actions{display:flex;gap:7px}
+.tok-btn{flex:1;display:flex;align-items:center;justify-content:center;gap:6px;background:#111;border:1px solid #3a3a3e;border-radius:10px;padding:9px 8px;font-size:12px;font-weight:600;color:var(--text2);cursor:pointer;font-family:inherit;transition:all .15s}
+.tok-btn:active{opacity:.65;transform:scale(.95)}
+.tok-btn.accent{color:var(--orange);border-color:var(--orange-glow);background:var(--orange-dim)}
+.tok-btn.danger{color:var(--red);border-color:rgba(255,69,58,.2)}
+.tok-btn:hover{border-color:#555;background:rgba(255,255,255,.05)}
+.tok-btn.accent:hover{background:rgba(255,107,0,.22)}
+.tok-btn.danger:hover{background:rgba(255,69,58,.08)}
+
+/* GEN BUTTON */
+.gen-btn{width:100%;background:var(--orange);color:#fff;border:none;border-radius:var(--r);padding:16px;font-size:17px;font-weight:700;font-family:inherit;cursor:pointer;letter-spacing:-.2px;transition:opacity .15s,transform .1s;box-shadow:0 6px 24px rgba(255,107,0,.35);display:flex;align-items:center;justify-content:center;gap:8px}
+.gen-btn:active{opacity:.85;transform:scale(.98)}
+.gen-btn:disabled{opacity:.4;cursor:not-allowed;transform:none}
+@keyframes spin{to{transform:rotate(360deg)}}
+.btn-spinner{width:20px;height:20px;border:2.5px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;flex-shrink:0}
+
+/* OUTPUT */
+.out-box{display:none;background:linear-gradient(145deg,#1e1e22,#18181b);border:1px solid #3a3a3e;border-radius:var(--rlg);overflow:hidden;animation:fadeUp .4s ease both}
+.out-hd{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-bottom:1px solid var(--sep);background:rgba(48,209,88,.05)}
+.out-badge{display:flex;align-items:center;gap:7px;font-size:10px;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:.4px}
+.out-dot{width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 7px var(--green);animation:livePulse 2s ease-in-out infinite}
+@keyframes livePulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
+.tok-disp{margin:12px 14px;background:rgba(0,0,0,.3);border:1px dashed rgba(255,107,0,.25);border-radius:11px;padding:11px;font-family:'Menlo','Monaco',monospace;font-size:10.5px;color:var(--orange);word-break:break-all;line-height:1.6;min-height:40px}
+.cp-tok-btn{display:flex;align-items:center;justify-content:center;gap:6px;width:calc(100% - 28px);margin:0 14px 12px;height:36px;background:var(--orange);border:none;border-radius:10px;color:#fff;font-size:12px;font-weight:700;cursor:pointer;transition:all .2s;box-shadow:0 2px 12px rgba(255,107,0,.3)}
+.cp-tok-btn:hover{opacity:.88}
+.out-meta{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--sep);border-top:1px solid var(--sep)}
+.m-cell{background:#18181b;padding:10px 14px}
+.m-lbl{font-size:9.5px;color:var(--text4);text-transform:uppercase;letter-spacing:.5px;font-weight:600;margin-bottom:3px}
+.m-val{font-size:13.5px;font-weight:700}
+.uid-row{background:#18181b;padding:10px 14px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--sep)}
+.uid-lbl{font-size:9.5px;color:var(--text4);text-transform:uppercase;letter-spacing:.5px;font-weight:600}
+.uid-val{font-family:'Menlo','Monaco',monospace;font-size:13.5px;font-weight:700;color:var(--orange)}
+.dev-strip{display:flex;align-items:center;justify-content:space-between;padding:9px 14px;border-top:1px solid var(--sep);background:rgba(255,107,0,.03)}
+.dev-strip-l{display:flex;align-items:center;gap:7px}
+.dev-av-sm{width:20px;height:20px;border-radius:50%;object-fit:cover;border:1px solid rgba(255,107,0,.3);flex-shrink:0}
+.dev-nm{font-size:10.5px;font-weight:700;color:var(--orange);letter-spacing:.2px}
+.dev-icons{display:flex;align-items:center;gap:4px}
+.d-ico{width:24px;height:24px;border-radius:6px;background:rgba(255,255,255,.05);border:1px solid var(--sep);display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--text3);text-decoration:none;transition:all .2s}
+.d-ico:hover{color:var(--text);border-color:#555;transform:scale(1.14)}
+.d-ico.dtg:hover{color:#2AABEE;background:rgba(42,171,238,.1)}
+.d-ico.dgh:hover{color:#e6edf3;background:rgba(230,237,243,.08)}
+.d-ico.dyt:hover{color:#FF0000;background:rgba(255,0,0,.1)}
+.d-ico.dwa:hover{color:#25D366;background:rgba(37,211,102,.1)}
+
+/* ERROR */
+.err-box{display:none;background:rgba(255,69,58,.06);border:1px solid rgba(255,69,58,.20);border-radius:var(--rlg);padding:18px;text-align:center}
+.err-box i{font-size:24px;color:var(--red);margin-bottom:7px;display:block}
+.err-title{font-size:13px;font-weight:700;color:var(--red)}
+.err-sub{font-size:11px;color:var(--text3);margin-top:3px}
+
+/* FOOTER */
+.footer{padding:28px 20px 40px;display:flex;flex-direction:column;align-items:center;gap:14px;border-top:1px solid var(--sep);margin-top:40px}
+.footer-links{display:flex;flex-wrap:wrap;justify-content:center;gap:7px}
+.footer-link{display:flex;align-items:center;gap:5px;background:var(--bg4);border:1px solid var(--sep);border-radius:100px;padding:5px 11px;font-size:11px;font-weight:500;color:var(--text2);text-decoration:none;transition:border-color .15s,color .15s;white-space:nowrap}
+.footer-link:hover{border-color:var(--orange);color:var(--orange)}
+.footer-link i{font-size:11px;flex-shrink:0}
+.footer-copy{font-size:10px;color:var(--text4);text-align:center;line-height:1.6;white-space:nowrap}
+.footer-copy strong{color:var(--orange)}
+
+/* TOAST */
+.toast{position:fixed;top:20px;left:50%;transform:translateX(-50%) translateY(-80px);background:rgba(18,18,28,.96);backdrop-filter:blur(14px);border:1px solid #3a3a3e;border-radius:100px;padding:8px 18px;font-size:12.5px;font-weight:600;color:var(--text);display:flex;align-items:center;gap:7px;z-index:9999;transition:transform .4s cubic-bezier(.34,1.56,.64,1);box-shadow:0 8px 32px rgba(0,0,0,.5);white-space:nowrap}
+.toast.show{transform:translateX(-50%) translateY(0)}
+.toast i{color:var(--green)}
+.toast.warn i{color:var(--orange)}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.fade-up  {animation:fadeUp .5s ease both}
+.fade-up-2{animation:fadeUp .5s .08s ease both}
+.fade-up-3{animation:fadeUp .5s .16s ease both}
+.fade-up-4{animation:fadeUp .5s .24s ease both}
+.fade-up-5{animation:fadeUp .5s .32s ease both}
+</style>
+</head>
+<body>
+
+<div class="toast" id="toast"><i class="fas fa-check-circle"></i><span id="toastMsg">Copied!</span></div>
+
+<!-- HEADER -->
+<div class="header fade-up">
+  <h1>Free Fire Token Generator</h1>
+  <p>Generate Access Token &amp; JWT from your Garena EAT token — instantly.</p>
+  <div class="header-line"></div>
+</div>
+
+<!-- TOOL SECTION -->
+<div class="section fade-up-2">
+  <div class="section-label">Token Generator</div>
+  <div class="card" style="overflow:visible">
+
+    <!-- CUSTOM SELECT DROPDOWN -->
+    <div class="pill-row">
+      <div class="sel-row" onclick="toggleDrop()">
+        <div class="sel-icon" id="sel-mode-icon"><i class="fas fa-right-to-bracket"></i></div>
+        <div class="sel-info">
+          <div class="sel-label">Option Mode</div>
+          <div class="sel-val" id="selVal">Get EAT Token</div>
+        </div>
+        <i class="fas fa-chevron-down sel-arr" id="dropArr"></i>
+      </div>
+
+      <div class="drop-list" id="dropList">
+        <div class="drop-item active" onclick="pickDrop(this,'eat','Get EAT Token','fas fa-right-to-bracket')">
+          <div class="drop-item-icon"><i class="fas fa-right-to-bracket"></i></div>
+          <div class="di-info">
+            <div class="di-name">Get EAT Token</div>
+            <div class="di-code">Official login &amp; instructions</div>
+          </div>
+          <i class="fas fa-check di-check"></i>
+        </div>
+        <div class="drop-item" onclick="pickDrop(this,'access','Access Token','fas fa-unlock-keyhole')">
+          <div class="drop-item-icon"><i class="fas fa-unlock-keyhole"></i></div>
+          <div class="di-info">
+            <div class="di-name">Access Token</div>
+            <div class="di-code">Generate Garena access token</div>
+          </div>
+          <i class="fas fa-check di-check"></i>
+        </div>
+        <div class="drop-item" onclick="pickDrop(this,'jwt','JWT Token','fas fa-fingerprint')">
+          <div class="drop-item-icon"><i class="fas fa-fingerprint"></i></div>
+          <div class="di-info">
+            <div class="di-name">JWT Token</div>
+            <div class="di-code">Generate JSON Web Token</div>
+          </div>
+          <i class="fas fa-check di-check"></i>
+        </div>
+      </div>
+    </div>
+
+    <!-- ACCESS TOKEN INPUT -->
+    <div id="section-access" style="display:none">
+      <div class="token-input-area">
+        <div class="token-input-row" id="inp-row-access">
+          <div class="field-icon"><i class="fas fa-unlock-keyhole"></i></div>
+          <div class="field-wrap">
+            <div class="field-label-sm">EAT Token / Kiosgamer URL</div>
+            <input class="field-input visible" id="eat-input-access" type="text" placeholder="Paste URL or EAT token here..." autocomplete="off" spellcheck="false" oninput="onInpChange('access')">
+          </div>
+          <button class="eye-btn" id="eye-access" onclick="toggleEye('access')"><i class="fas fa-eye" id="eye-ico-access"></i></button>
+        </div>
+        <div class="token-actions">
+          <button class="tok-btn accent" onclick="pasteInp('access')"><i class="far fa-clipboard"></i> Paste</button>
+          <button class="tok-btn" onclick="copyInp('access')"><i class="far fa-copy"></i> Copy</button>
+          <button class="tok-btn danger" onclick="clearInp('access')"><i class="far fa-trash-can"></i> Clear</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- JWT TOKEN INPUT -->
+    <div id="section-jwt" style="display:none">
+      <div class="token-input-area">
+        <div class="token-input-row" id="inp-row-jwt">
+          <div class="field-icon"><i class="fas fa-fingerprint"></i></div>
+          <div class="field-wrap">
+            <div class="field-label-sm">EAT Token / Kiosgamer URL</div>
+            <input class="field-input visible" id="eat-input-jwt" type="text" placeholder="Paste URL or EAT token here..." autocomplete="off" spellcheck="false" oninput="onInpChange('jwt')">
+          </div>
+          <button class="eye-btn" id="eye-jwt" onclick="toggleEye('jwt')"><i class="fas fa-eye" id="eye-ico-jwt"></i></button>
+        </div>
+        <div class="token-actions">
+          <button class="tok-btn accent" onclick="pasteInp('jwt')"><i class="far fa-clipboard"></i> Paste</button>
+          <button class="tok-btn" onclick="copyInp('jwt')"><i class="far fa-copy"></i> Copy</button>
+          <button class="tok-btn danger" onclick="clearInp('jwt')"><i class="far fa-trash-can"></i> Clear</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- GET EAT TOKEN: How to use -->
+    <div id="section-eat">
+      <div class="how-section" style="border-bottom:none">
+        <div class="sec-hd"><div class="sec-ico"><i class="fas fa-right-to-bracket"></i></div><span class="sec-ttl">How to Get EAT Token</span></div>
+        <div class="step"><div class="step-n">1</div><div class="step-t">Select a provider &amp; login below.<br><span class="safe-b"><i class="fas fa-shield-alt"></i> Official Garena Server · Safe</span></div></div>
+        <div class="step">
+          <div class="step-n">2</div>
+          <div class="step-t">
+            <strong>Go to Browser History</strong> and search any:
+            <div style="margin-top:8px">
+              <div class="code-row"><code>https://ticket.kiosgamer.co.id/?eat=</code><button class="cpbtn" onclick="cp('https://ticket.kiosgamer.co.id/?eat=')"><i class="fas fa-copy"></i></button></div>
+              <div class="code-row"><code>?eat=</code><button class="cpbtn" onclick="cp('?eat=')"><i class="fas fa-copy"></i></button></div>
+              <div class="code-row"><code>/callback/?eat=</code><button class="cpbtn" onclick="cp('/callback/?eat=')"><i class="fas fa-copy"></i></button></div>
+            </div>
+            <div class="url-prev">https://ticket.kiosgamer.co.id/?eat=<span style="color:var(--orange)">{eat_id}</span>&amp;lang=en&amp;region=<span style="color:var(--green)">{region}</span>&amp;account_id=<span style="color:#BF5AF2">{uid}</span>&amp;nickname=<span style="color:#FFD60A">{name}</span></div>
+          </div>
+        </div>
+        <div class="step"><div class="step-n">3</div><div class="step-t">Copy the <strong>full URL</strong> or just the token after <code style="color:var(--orange);font-size:11px">eat=</code> and paste it in the generator above.</div></div>
+        <a href="https://youtube.com/shorts/lPEPd_sl7cY?si=ilDiCk-QpbQXE0RZ" target="_blank" class="yt-tut">
+          <div class="yt-ico-wrap"><i class="fab fa-youtube"></i></div>
+          <div class="yt-info"><div class="yt-title">Full Tutorial</div><div class="yt-sub">Watch how to get your EAT token</div></div>
+          <i class="fas fa-chevron-right yt-arr"></i>
+        </a>
+      </div>
+      <div class="prov-section" style="border-bottom:none">
+        <div class="prov-label">Login with Provider</div>
+        <div class="prov-grid">
+          <a href="https://auth.garena.com/universal/oauth?platform=8&response_type=code&locale=en-SG&client_id=100067&redirect_uri=https://api.ff.garena.co.id/auth/auth/callback_n?site=https://api-ticket.ff.gameid.garena.co.id/oauth/callback_redirect/" target="_blank" class="prov-btn" title="Google"><img src="https://www.gstatic.com/marketing-cms/assets/images/d5/dc/cfe9ce8b4425b410b49b7f2dd3f3/g.webp=s96-fcrop64=1,00000000ffffffff-rw" alt="G"></a>
+          <a href="https://auth.garena.com/universal/oauth?platform=3&response_type=code&locale=en-SG&client_id=100067&redirect_uri=https://api.ff.garena.co.id/auth/auth/callback_n?site=https://api-ticket.ff.gameid.garena.co.id/oauth/callback_redirect/" target="_blank" class="prov-btn" title="Facebook"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Facebook_Logo_2023.png/120px-Facebook_Logo_2023.png" alt="FB"></a>
+          <a href="https://auth.garena.com/universal/oauth?platform=10&response_type=code&locale=en-SG&client_id=100067&redirect_uri=https://api.ff.garena.co.id/auth/auth/callback_n?site=https://api-ticket.ff.gameid.garena.co.id/oauth/callback_redirect/" target="_blank" class="prov-btn" title="Apple"><i class="fab fa-apple"></i></a>
+          <a href="https://auth.garena.com/universal/oauth?platform=11&response_type=code&locale=en-SG&client_id=100067&redirect_uri=https://api.ff.garena.co.id/auth/auth/callback_n?site=https://api-ticket.ff.gameid.garena.co.id/oauth/callback_redirect/" target="_blank" class="prov-btn" title="X"><img src="https://abs.twimg.com/responsive-web/client-web/icon-default.522d363a.png" alt="X" style="border-radius:50%"></a>
+          <a href="https://auth.garena.com/universal/oauth?platform=5&response_type=code&locale=en-SG&client_id=100067&redirect_uri=https://api.ff.garena.co.id/auth/auth/callback_n?site=https://api-ticket.ff.gameid.garena.co.id/oauth/callback_redirect/" target="_blank" class="prov-btn" title="VK"><img src="https://vk.com/images/icons/favicons/fav_logo.ico?8" alt="VK"></a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- GEN BUTTON -->
+<div class="section fade-up-3" id="gen-btn-wrap" style="display:none">
+  <button class="gen-btn" id="gen-btn" onclick="generate(this)">
+    <i class="fas fa-unlock-alt"></i>
+    <span id="gen-txt">Generate Access Token</span>
+  </button>
+</div>
+
+<!-- OUTPUT -->
+<div class="section fade-up-4">
+  <div class="out-box" id="out-box">
+    <div class="out-hd">
+      <div class="out-badge"><div class="out-dot"></div><span id="out-label">Token Generated</span></div>
+      <span style="font-size:9px;color:var(--text4);font-weight:700;letter-spacing:.4px">LIVE</span>
+    </div>
+    <div style="padding:12px 14px 0">
+      <div style="font-size:9.5px;color:var(--text4);text-transform:uppercase;letter-spacing:.5px;font-weight:600;margin-bottom:6px" id="tok-label">Token</div>
+      <div class="tok-disp" id="tok-disp">—</div>
+      <button class="cp-tok-btn" onclick="copyTok()"><i class="fas fa-copy"></i> Copy Token</button>
+    </div>
+    <div class="out-meta">
+      <div class="m-cell"><div class="m-lbl">Nickname</div><div class="m-val" id="out-nick">—</div></div>
+      <div class="m-cell"><div class="m-lbl">Region</div><div class="m-val" id="out-reg">—</div></div>
+    </div>
+    <div class="uid-row">
+      <span class="uid-lbl">Account UID</span>
+      <span class="uid-val" id="out-uid">—</span>
+    </div>
+    <div class="dev-strip">
+      <div class="dev-strip-l">
+        <img class="dev-av-sm" src="https://i.ibb.co/jPQfktN2/cdd482772c1b.jpg" alt="">
+        <span class="dev-nm">CODEX-M41NUL</span>
+      </div>
+      <div class="dev-icons">
+        <a href="https://github.com/M41NUL" target="_blank" class="d-ico dgh"><i class="fab fa-github"></i></a>
+        <a href="https://t.me/mdmainulislaminfo" target="_blank" class="d-ico dtg"><i class="fab fa-telegram"></i></a>
+        <a href="https://t.me/codexm41nul" target="_blank" class="d-ico dtg"><i class="fas fa-paper-plane"></i></a>
+        <a href="https://youtube.com/@codexm41nul" target="_blank" class="d-ico dyt"><i class="fab fa-youtube"></i></a>
+        <a href="https://wa.me/8801308850528" target="_blank" class="d-ico dwa"><i class="fab fa-whatsapp"></i></a>
+      </div>
+    </div>
+  </div>
+  <div class="err-box" id="err-box">
+    <i class="fas fa-exclamation-circle"></i>
+    <div class="err-title">Generation Failed</div>
+    <div class="err-sub" id="err-sub">Invalid token or server error. Please try again.</div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer fade-up-5">
+  <div class="footer-links">
+    <a class="footer-link" href="https://github.com/M41NUL" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+    <a class="footer-link" href="https://t.me/mdmainulislaminfo" target="_blank"><i class="fab fa-telegram"></i> Telegram</a>
+    <a class="footer-link" href="https://wa.me/8801308850528" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+    <a class="footer-link" href="mailto:devmainulislam@gmail.com"><i class="far fa-envelope"></i> Email</a>
+  </div>
+  <div class="footer-copy">
+    © 2026 Free Fire Token Generator — <strong>CODEX-M41NUL</strong>. All Rights Reserved.
+  </div>
+</footer>
+
+<script>
+const API_ACCESS = 'https://ff-eat-token-to-access-token.vercel.app/Eat';
+const API_JWT    = 'https://ff-eat-to-jwt-bio-update-m41nul.vercel.app/api/verify-token';
+
+let currentMode = 'eat';
+let eyeState = { access: true, jwt: true };
+let tT;
+let dropOpen = false;
+
+function toast(msg, warn=false) {
+  const t = document.getElementById('toast');
+  document.getElementById('toastMsg').textContent = msg;
+  t.className = 'toast' + (warn?' warn':'');
+  t.querySelector('i').className = warn ? 'fas fa-exclamation-triangle' : 'fas fa-check-circle';
+  t.classList.add('show'); clearTimeout(tT);
+  tT = setTimeout(() => t.classList.remove('show'), 2200);
+}
+function cp(txt) { navigator.clipboard.writeText(txt).then(() => toast('Copied!')).catch(()=>{}); }
+
+function toggleDrop() {
+  dropOpen = !dropOpen;
+  document.getElementById('dropList').classList.toggle('open', dropOpen);
+  document.getElementById('dropArr').style.transform = dropOpen ? 'rotate(180deg)' : '';
+}
+
+function pickDrop(el, mode, valText, iconClass) {
+  document.querySelectorAll('.drop-item').forEach(item => item.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('selVal').textContent = valText;
+  document.getElementById('sel-mode-icon').innerHTML = `<i class="${iconClass}"></i>`;
+  selectMode(mode);
+  toggleDrop();
+}
+
+function selectMode(m) {
+  currentMode = m;
+  document.getElementById('section-access').style.display = m==='access' ? '' : 'none';
+  document.getElementById('section-jwt').style.display    = m==='jwt'    ? '' : 'none';
+  document.getElementById('section-eat').style.display    = m==='eat'    ? '' : 'none';
+  document.getElementById('gen-btn-wrap').style.display   = m==='eat' ? 'none' : '';
+  if (m !== 'eat') {
+    document.getElementById('gen-txt').textContent = m==='access' ? 'Generate Access Token' : 'Generate JWT Token';
+  }
+  document.getElementById('out-box').style.display = 'none';
+  document.getElementById('err-box').style.display = 'none';
+}
+
+window.addEventListener('click', function(e) {
+  const wrap = document.querySelector('.pill-row');
+  if (wrap && !wrap.contains(e.target)) {
+    dropOpen = false;
+    document.getElementById('dropList').classList.remove('open');
+    document.getElementById('dropArr').style.transform = '';
+  }
+});
+
+selectMode('eat');
+
+function onInpChange(mode) {
+  const raw = document.getElementById('eat-input-'+mode).value.trim();
+  const row = document.getElementById('inp-row-'+mode);
+  row.classList.remove('valid','invalid');
+  if (!raw) return;
+  row.classList.add(raw.length > 10 ? 'valid' : 'invalid');
+}
+function toggleEye(mode) {
+  eyeState[mode] = !eyeState[mode];
+  const inp = document.getElementById('eat-input-'+mode);
+  const ico = document.getElementById('eye-ico-'+mode);
+  const btn = document.getElementById('eye-'+mode);
+  inp.classList.toggle('visible', eyeState[mode]);
+  ico.className = eyeState[mode] ? 'fas fa-eye' : 'fas fa-eye-slash';
+  btn.classList.toggle('on', !eyeState[mode]);
+}
+async function pasteInp(mode) {
+  try {
+    const t = await navigator.clipboard.readText();
+    document.getElementById('eat-input-'+mode).value = t;
+    onInpChange(mode); toast('Pasted!');
+  } catch(e) { document.getElementById('eat-input-'+mode).focus(); }
+}
+function copyInp(mode) {
+  const v = document.getElementById('eat-input-'+mode).value;
+  if (v) navigator.clipboard.writeText(v).then(() => toast('Copied!'));
+}
+function clearInp(mode) {
+  document.getElementById('eat-input-'+mode).value = '';
+  document.getElementById('inp-row-'+mode).classList.remove('valid','invalid');
+  document.getElementById('out-box').style.display = 'none';
+  document.getElementById('err-box').style.display = 'none';
+}
+
+function extractEat(raw) {
+  if (raw.includes('eat=')) {
+    const m = raw.match(/[?&]eat=([^&\s]+)/);
+    if (m?.[1]) return decodeURIComponent(m[1]);
+  }
+  return raw.trim();
+}
+
+function setLoading(btn, on) {
+  if (on) {
+    btn.disabled = true;
+    btn.innerHTML = '<div class="btn-spinner"></div><span>Generating…</span>';
+  } else {
+    btn.disabled = false;
+    const lbl = currentMode==='access' ? 'Generate Access Token' : 'Generate JWT Token';
+    btn.innerHTML = `<i class="fas fa-unlock-alt"></i> <span>${lbl}</span>`;
+  }
+}
+
+async function generate(btn) {
+  const raw = document.getElementById('eat-input-'+currentMode).value.trim();
+  const ob  = document.getElementById('out-box');
+  const eb  = document.getElementById('err-box');
+  ob.style.display = 'none';
+  eb.style.display = 'none';
+
+  if (!raw) {
+    document.getElementById('inp-row-'+currentMode).classList.add('invalid');
+    toast('Please paste a token or URL first!', true);
+    return;
+  }
+
+  const eat = extractEat(raw);
+  setLoading(btn, true);
+
+  try {
+    if (currentMode === 'access') {
+      const res  = await fetch(API_ACCESS + '?eat_token=' + encodeURIComponent(eat));
+      const data = await res.json();
+      if (data.status === 'success') {
+        document.getElementById('tok-label').textContent = 'Access Token';
+        document.getElementById('out-label').textContent = 'Access Token Generated';
+        document.getElementById('tok-disp').textContent  = data.access_token || '—';
+        document.getElementById('out-nick').textContent  = data.account_nickname || '—';
+        document.getElementById('out-reg').textContent   = data.region || '—';
+        document.getElementById('out-uid').textContent   = data.account_id || '—';
+        ob.style.display = 'block';
+        ob.scrollIntoView({ behavior:'smooth', block:'nearest' });
+      } else {
+        document.getElementById('err-sub').textContent = data.error || 'Invalid token or server error.';
+        eb.style.display = 'block';
+      }
+    } else {
+      const res  = await fetch(API_JWT + '?eat_token=' + encodeURIComponent(eat));
+      const data = await res.json();
+      if (data.success) {
+        const acc = data.account || {};
+        document.getElementById('tok-label').textContent = 'JWT Token';
+        document.getElementById('out-label').textContent = 'JWT Token Generated';
+        document.getElementById('tok-disp').textContent  = data.jwt_token || '—';
+        document.getElementById('out-nick').textContent  = acc.nickname || '—';
+        document.getElementById('out-reg').textContent   = acc.region || '—';
+        document.getElementById('out-uid').textContent   = acc.uid || '—';
+        ob.style.display = 'block';
+        ob.scrollIntoView({ behavior:'smooth', block:'nearest' });
+      } else {
+        document.getElementById('err-sub').textContent = data.error || 'Invalid token or server error.';
+        eb.style.display = 'block';
+      }
+    }
+  } catch(e) {
+    document.getElementById('err-sub').textContent = 'Network error. Please check your connection and try again.';
+    eb.style.display = 'block';
+  } finally {
+    setLoading(btn, false);
+  }
+}
+
+function copyTok() {
+  const t = document.getElementById('tok-disp').textContent;
+  if (t && t !== '—') navigator.clipboard.writeText(t).then(() => toast('Token Copied!'));
+}
+</script>
+</body>
+</html>
