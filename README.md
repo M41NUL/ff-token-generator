@@ -1,76 +1,88 @@
 <div align="center">
+  <img src="https://i.ibb.co/SSypxLk/08add7aed049.jpg" width="80" height="80" style="border-radius:16px" alt="logo">
 
-# 🔥 Free Fire Token Generator
+  # Free Fire Token Generator
 
-**Generate Free Fire Access Token & JWT from Garena EAT token — instantly.**
+  Generate Free Fire **Access Token** & **JWT** from a Garena EAT token — instantly.
 
-![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
-![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
-![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+  [**🌐 Live Demo**](https://ff-token-generator-m41nul.vercel.app)
 
-![GitHub repo size](https://img.shields.io/github/repo-size/M41NUL/ff-token-generator?style=flat-square&color=FF6B00)
-![GitHub last commit](https://img.shields.io/github/last-commit/M41NUL/ff-token-generator?style=flat-square&color=FF6B00)
-![GitHub stars](https://img.shields.io/github/stars/M41NUL/ff-token-generator?style=flat-square&color=FF6B00)
-![GitHub forks](https://img.shields.io/github/forks/M41NUL/ff-token-generator?style=flat-square&color=FF6B00)
-![License](https://img.shields.io/badge/license-MIT-FF6B00?style=flat-square)
+  <br>
 
+  ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+  ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+  ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+  ![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)
+
+  ![Repo size](https://img.shields.io/github/repo-size/M41NUL/ff-token-generator?style=flat-square&color=FF6B00&label=size)
+  ![Last commit](https://img.shields.io/github/last-commit/M41NUL/ff-token-generator?style=flat-square&color=FF6B00&label=updated)
+  ![Stars](https://img.shields.io/github/stars/M41NUL/ff-token-generator?style=flat-square&color=FF6B00)
+  ![License](https://img.shields.io/badge/license-MIT-FF6B00?style=flat-square)
 </div>
 
----
+<br>
 
-## 📱 About
+## Overview
 
-A mobile-optimized, single-page web tool that converts a Garena **EAT token** into a Free Fire **Access Token** or **JWT Token** — no install, no backend setup, just paste and generate.
+A mobile-first, single-page tool that turns a Garena **EAT token** into a working **Access Token** or **JWT**. No backend, no install — open it in a browser and it just works.
 
-Built with a clean iOS-style dark glassmorphism UI, smooth dropdown mode switching, and live token output with copy-to-clipboard support.
+<br>
 
-## ✨ Features
+## Features
 
-- 🔑 **Access Token Generator** — convert EAT token → Garena access token
-- 🛡️ **JWT Token Generator** — convert EAT token → signed JWT
-- 📖 **Get EAT Token guide** — step-by-step instructions + provider login shortcuts (Google, Facebook, Apple, X, VK)
-- 👁️ Show/hide token input, paste/copy/clear actions
-- 📋 One-tap copy for generated tokens
-- 🎨 Dark glassmorphism UI, fully responsive for mobile
-- ⚡ Pure HTML/CSS/JS — no build step, no dependencies to install
-
-## 🖥️ Demo
-
-Open `index.html` in any browser, or host it on GitHub Pages / Vercel / Netlify.
-
-## 🛠️ Tech Stack
-
-| Layer | Tech |
+| | |
 |---|---|
-| Structure | HTML5 |
-| Styling | CSS3 (custom properties, glassmorphism) |
-| Logic | Vanilla JavaScript (Fetch API) |
-| Icons | Font Awesome 6 |
-| Fonts | Inter (Google Fonts) |
+| 🔑 **Access Token** | Convert EAT token → Garena access token |
+| 🛡️ **JWT Token** | Convert EAT token → signed JWT |
+| 📖 **EAT Token Guide** | Built-in steps + provider login shortcuts (Google, Facebook, Apple, X, VK) |
+| 👁️ **Privacy Controls** | Show/hide, paste, copy, and clear token input |
+| 📋 **One-tap Copy** | Copy generated tokens instantly |
+| 🎨 **Dark UI** | iOS-style glassmorphism, fully responsive |
 
-## 🚀 Usage
+<br>
 
-1. Clone the repo:
-   ```bash
-   git clone https://github.com/M41NUL/ff-token-generator.git
-   ```
-2. Open `index.html` directly in your browser — that's it, no server required.
-3. Select a mode (**Get EAT Token**, **Access Token**, or **JWT Token**) from the dropdown.
-4. Paste your EAT token or Kiosgamer callback URL.
-5. Tap **Generate** and copy your token.
+## Tech Stack
 
-## 📂 Project Structure
+`HTML5` · `CSS3` · `Vanilla JavaScript` · `Font Awesome 6` · `Inter`
+
+No frameworks, no build step, no dependencies to install.
+
+<br>
+
+## Getting Started
+
+```bash
+git clone https://github.com/M41NUL/ff-token-generator.git
+cd ff-token-generator
+```
+
+Open `index.html` in your browser — that's the entire setup.
+
+**How to use it:**
+
+1. Pick a mode from the dropdown — **Get EAT Token**, **Access Token**, or **JWT Token**
+2. Paste your EAT token or Kiosgamer callback URL
+3. Tap **Generate**
+4. Copy your token
+
+<br>
+
+## Project Structure
 
 ```
 ff-token-generator/
-└── index.html   # everything — markup, styles, and logic in one file
+└── index.html
 ```
 
-## ⚠️ Disclaimer
+<br>
 
-This tool is for educational and personal use only. It interacts with publicly accessible Garena OAuth endpoints. Use responsibly and at your own risk — the developer is not responsible for any misuse.
+## Disclaimer
 
-## 👤 Author
+For educational and personal use only. This tool interacts with publicly accessible Garena OAuth endpoints. Use responsibly — the developer is not liable for any misuse.
+
+<br>
+
+## Author
 
 <div align="center">
 
@@ -81,12 +93,6 @@ This tool is for educational and personal use only. It interacts with publicly a
 [![YouTube](https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://youtube.com/@codexm41nul)
 [![WhatsApp](https://img.shields.io/badge/WhatsApp-25D366?style=for-the-badge&logo=whatsapp&logoColor=white)](https://wa.me/8801308850528)
 
-</div>
-
----
-
-<div align="center">
-
-© 2026 Free Fire Token Generator — **CODEX-M41NUL**. All Rights Reserved.
+<sub>© 2026 Free Fire Token Generator — All Rights Reserved.</sub>
 
 </div>
