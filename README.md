@@ -5,7 +5,7 @@
 
   Generate Free Fire **Access Token** & **JWT** from a Garena EAT token — instantly.
 
-  [**🌐 Live Demo**](https://ff-token-generator-m41nul.vercel.app)
+  [**Free Fire Token Generator**](https://ff-token-generator-m41nul.vercel.app)
 
   <br>
 
