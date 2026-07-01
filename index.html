@@ -459,7 +459,7 @@ body{font-family:-apple-system,'Inter',BlinkMacSystemFont,sans-serif;background:
 </div>
 
 <!-- SHARE TOOL CARD -->
-<div class="share-tool-card fade-up-5">
+<div class="share-tool-card fade-up-5" id="share-tool-card">
   <div class="share-tool-ico"><i class="fas fa-share-nodes"></i></div>
   <div class="share-tool-ttl">Share This Tool</div>
   <div class="share-tool-sub">Know someone who needs a Free Fire token? Share this website with them.</div>
@@ -506,6 +506,11 @@ function toast(msg, warn=false) {
 }
 function cp(txt) { navigator.clipboard.writeText(txt).then(() => toast('Copied!')).catch(()=>{}); }
 
+/* ===== Auto-clear clipboard helper =====
+   Copies sensitive text, then clears the clipboard after a delay
+   IF the clipboard still holds that same value (so we don't wipe
+   something else the user copied afterwards). Shows a live countdown
+   for the entire duration. */
 let clipClearTimer = null;
 let clipCountdownInterval = null;
 const CLIP_CLEAR_SECONDS = 10;
@@ -582,6 +587,11 @@ function pickDrop(el, mode, valText, iconClass) {
   requestAnimationFrame(() => selectMode(mode));
 }
 
+function setShareCardVisible(visible) {
+  const card = document.getElementById('share-tool-card');
+  if (card) card.style.display = visible ? '' : 'none';
+}
+
 function selectMode(m) {
   currentMode = m;
   const set = (id, styleObj) => {
@@ -599,6 +609,7 @@ function selectMode(m) {
   }
   set('out-box', { display: 'none' });
   set('err-box', { display: 'none' });
+  setShareCardVisible(true);
 }
 
 window.addEventListener('click', function(e) {
@@ -642,6 +653,7 @@ function clearInp(mode) {
   document.getElementById('inp-row-'+mode).classList.remove('valid','invalid');
   document.getElementById('out-box').style.display = 'none';
   document.getElementById('err-box').style.display = 'none';
+  setShareCardVisible(true);
 }
 
 function extractEat(raw) {
@@ -672,6 +684,7 @@ async function generate(btn) {
   const eb  = document.getElementById('err-box');
   ob.style.display = 'none';
   eb.style.display = 'none';
+  setShareCardVisible(true);
 
   if (!raw) {
     document.getElementById('inp-row-'+reqMode).classList.add('invalid');
@@ -705,6 +718,7 @@ async function generate(btn) {
           time: new Date().toLocaleString()
         });
         ob.style.display = 'block';
+        setShareCardVisible(false);
         ob.scrollIntoView({ behavior:'smooth', block:'nearest' });
       } else {
         if (currentMode !== reqMode) return;
@@ -734,6 +748,7 @@ async function generate(btn) {
           time: new Date().toLocaleString()
         });
         ob.style.display = 'block';
+        setShareCardVisible(false);
         ob.scrollIntoView({ behavior:'smooth', block:'nearest' });
       } else {
         if (currentMode !== reqMode) return;
