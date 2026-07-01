@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Free Fire Token Generator · CODEX-M41NUL</title>
 <link rel="icon" type="image/jpeg" href="https://i.ibb.co/SSypxLk/08add7aed049.jpg">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>
 :root {
@@ -200,6 +200,44 @@ body{font-family:-apple-system,'Inter',BlinkMacSystemFont,sans-serif;background:
 .err-title{font-size:13px;font-weight:700;color:var(--red)}
 .err-sub{font-size:11px;color:var(--text3);margin-top:3px}
 
+/* WELCOME GATE POPUP */
+.gate-overlay{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:2000;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px);padding:20px}
+.gate-overlay.hidden{display:none}
+.gate-card{background:linear-gradient(150deg,#1c1c1f,#131315);border:1px solid #3a3a3e;border-radius:24px;width:100%;max-width:380px;max-height:90vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.06);animation:fadeUp .35s ease both}
+.gate-hero{padding:30px 22px 18px;text-align:center;position:relative}
+.gate-glow{position:absolute;top:-40px;left:50%;transform:translateX(-50%);width:220px;height:140px;background:radial-gradient(circle,rgba(255,107,0,.28),transparent 70%);filter:blur(10px);pointer-events:none}
+.gate-logo{width:120px;height:64px;border-radius:18px;overflow:hidden;border:2px solid var(--orange-glow);margin:0 auto 16px;position:relative;z-index:1;box-shadow:0 6px 20px rgba(255,107,0,.25)}
+.gate-logo img{width:100%;height:100%;object-fit:cover;display:block}
+.gate-title{font-family:'Poppins',sans-serif;font-weight:800;font-size:22px;letter-spacing:-.3px;line-height:1.25;background:linear-gradient(120deg,#fff 40%,var(--orange));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;position:relative;z-index:1}
+.gate-sub{font-size:12.5px;color:var(--text3);margin-top:8px;line-height:1.5;position:relative;z-index:1}
+.gate-tasks{padding:4px 18px 8px;display:flex;flex-direction:column;gap:10px}
+.gate-task{display:flex;align-items:center;gap:12px;background:#0d0d0f;border:1.5px solid var(--sep);border-radius:14px;padding:12px 13px;transition:all .25s}
+.gate-task.done{border-color:rgba(48,209,88,.35);background:rgba(48,209,88,.06)}
+.gate-task-ico{width:38px;height:38px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;transition:all .25s}
+.gate-task-ico.tg{background:rgba(42,171,238,.12);color:#2AABEE;border:1px solid rgba(42,171,238,.25)}
+.gate-task-ico.yt{background:rgba(255,0,0,.12);color:#ff4444;border:1px solid rgba(255,0,0,.25)}
+.gate-task.done .gate-task-ico{background:rgba(48,209,88,.15);color:var(--green);border-color:rgba(48,209,88,.4)}
+.gate-task-info{flex:1;min-width:0}
+.gate-task-name{font-size:13px;font-weight:700;color:var(--text)}
+.gate-task-desc{font-size:10.5px;color:var(--text4);margin-top:1px}
+.gate-task-action{flex-shrink:0}
+.gate-task-btn{display:flex;align-items:center;gap:6px;background:var(--orange);color:#fff;border:none;border-radius:9px;padding:8px 13px;font-size:11.5px;font-weight:700;cursor:pointer;font-family:inherit;transition:all .2s;white-space:nowrap}
+.gate-task-btn:hover{opacity:.9}
+.gate-task-btn:active{transform:scale(.94)}
+.gate-task-btn:disabled{opacity:.55;cursor:not-allowed}
+.gate-task-btn.waiting{background:#2a2a2d;color:var(--text3);border:1px solid var(--sep)}
+.gate-task-check{width:32px;height:32px;border-radius:9px;background:rgba(48,209,88,.15);border:1px solid rgba(48,209,88,.4);color:var(--green);display:flex;align-items:center;justify-content:center;font-size:14px}
+.gate-progress-wrap{padding:14px 18px 6px}
+.gate-progress-track{height:6px;background:#0d0d0f;border:1px solid var(--sep);border-radius:100px;overflow:hidden}
+.gate-progress-fill{height:100%;background:linear-gradient(90deg,var(--orange),#ff8a3d);border-radius:100px;transition:width .4s ease;width:0%}
+.gate-progress-txt{font-size:10.5px;color:var(--text4);text-align:center;margin-top:7px;font-weight:600}
+.gate-footer{padding:16px 18px 22px}
+.gate-continue{width:100%;background:#2a2a2d;color:var(--text4);border:none;border-radius:14px;padding:14px;font-size:14.5px;font-weight:700;font-family:inherit;cursor:not-allowed;transition:all .3s;display:flex;align-items:center;justify-content:center;gap:8px}
+.gate-continue.ready{background:var(--orange);color:#fff;cursor:pointer;box-shadow:0 6px 22px rgba(255,107,0,.35)}
+.gate-continue.ready:active{transform:scale(.98);opacity:.9}
+@keyframes spin{to{transform:rotate(360deg)}}
+.gate-spinner{width:14px;height:14px;border:2px solid rgba(255,255,255,.25);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;flex-shrink:0}
+
 /* SHARE TOOL CARD */
 .share-tool-card{background:linear-gradient(145deg,#1e1e22,#18181b);border:1px solid #3a3a3e;border-radius:var(--rlg);padding:18px 16px;margin:0 16px 22px;text-align:center;box-shadow:0 4px 24px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.06)}
 .share-tool-ico{width:44px;height:44px;border-radius:13px;background:var(--orange-dim);border:1px solid var(--orange-glow);color:var(--orange);display:flex;align-items:center;justify-content:center;font-size:19px;margin:0 auto 12px}
@@ -240,6 +278,64 @@ body{font-family:-apple-system,'Inter',BlinkMacSystemFont,sans-serif;background:
 <body>
 
 <div class="toast" id="toast"><i class="fas fa-check-circle"></i><span id="toastMsg">Copied!</span></div>
+
+<!-- WELCOME GATE POPUP -->
+<div class="gate-overlay hidden" id="gateOverlay">
+  <div class="gate-card">
+    <div class="gate-hero">
+      <div class="gate-glow"></div>
+      <div class="gate-logo"><img src="https://i.ibb.co/SSypxLk/08add7aed049.jpg" alt="Logo"></div>
+      <div class="gate-title">Welcome Free Fire<br>Token Generator</div>
+      <div class="gate-sub">Complete the steps below to unlock the tool.<br>Takes less than 30 seconds.</div>
+    </div>
+
+    <div class="gate-tasks">
+      <div class="gate-task" id="gate-task-tg1" data-task="tg1">
+        <div class="gate-task-ico tg"><i class="fab fa-telegram"></i></div>
+        <div class="gate-task-info">
+          <div class="gate-task-name">Join Telegram Channel</div>
+          <div class="gate-task-desc">Get updates &amp; new tools first</div>
+        </div>
+        <div class="gate-task-action">
+          <button class="gate-task-btn" onclick="gateStartTask('tg1', 'https://t.me/codexm41nul')">Join</button>
+        </div>
+      </div>
+
+      <div class="gate-task" id="gate-task-tg2" data-task="tg2">
+        <div class="gate-task-ico tg"><i class="fas fa-users"></i></div>
+        <div class="gate-task-info">
+          <div class="gate-task-name">Join Telegram Group</div>
+          <div class="gate-task-desc">Chat with other users &amp; get support</div>
+        </div>
+        <div class="gate-task-action">
+          <button class="gate-task-btn" onclick="gateStartTask('tg2', 'https://t.me/codex_m41nul')">Join</button>
+        </div>
+      </div>
+
+      <div class="gate-task" id="gate-task-yt" data-task="yt">
+        <div class="gate-task-ico yt"><i class="fab fa-youtube"></i></div>
+        <div class="gate-task-info">
+          <div class="gate-task-name">Subscribe on YouTube</div>
+          <div class="gate-task-desc">Video tutorials &amp; tool showcases</div>
+        </div>
+        <div class="gate-task-action">
+          <button class="gate-task-btn" onclick="gateStartTask('yt', 'https://youtube.com/@codexm41nul')">Subscribe</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="gate-progress-wrap">
+      <div class="gate-progress-track"><div class="gate-progress-fill" id="gateProgressFill"></div></div>
+      <div class="gate-progress-txt" id="gateProgressTxt">0 of 3 completed</div>
+    </div>
+
+    <div class="gate-footer">
+      <button class="gate-continue" id="gateContinueBtn" disabled onclick="gateContinue()">
+        <i class="fas fa-lock"></i> Complete All Steps
+      </button>
+    </div>
+  </div>
+</div>
 
 <!-- HEADER -->
 <div class="header fade-up">
@@ -464,8 +560,7 @@ body{font-family:-apple-system,'Inter',BlinkMacSystemFont,sans-serif;background:
   <div class="share-tool-ttl">Share This Tool</div>
   <div class="share-tool-sub">Know someone who needs a Free Fire token? Share this website with them.</div>
   <div class="share-tool-actions">
-    <button class="share-tool-btn primary" onclick="shareSite()"><i class="fas fa-share-nodes"></i> Share</button>
-    <button class="share-tool-btn secondary" onclick="showSiteQr()"><i class="fas fa-qrcode"></i> QR Code</button>
+    <button class="share-tool-btn primary" style="flex:1 1 100%" onclick="shareSite()"><i class="fas fa-share-nodes"></i> Share</button>
   </div>
 </div>
 
@@ -486,6 +581,93 @@ body{font-family:-apple-system,'Inter',BlinkMacSystemFont,sans-serif;background:
 const API_ACCESS = 'https://ff-eat-token-to-access-token.vercel.app/Eat';
 const API_JWT    = 'https://ff-eat-to-jwt-bio-update-m41nul.vercel.app/api/verify-token';
 const APP_VERSION = 'v2.1'; // bump this on every update for easy tracking
+
+/* ===== WELCOME GATE ===== */
+const GATE_STORAGE_KEY = 'ff_gate_passed_at';
+const GATE_VALID_MS = 24 * 60 * 60 * 1000; // 24 hours
+const GATE_VERIFY_SECONDS = 4;
+const gateTasks = { tg1: false, tg2: false, yt: false };
+const gateTotal = Object.keys(gateTasks).length;
+
+function gateHasRecentPass() {
+  try {
+    const t = parseInt(localStorage.getItem(GATE_STORAGE_KEY) || '0', 10);
+    return t && (Date.now() - t) < GATE_VALID_MS;
+  } catch(e) { return false; }
+}
+
+function gateMarkPassed() {
+  try { localStorage.setItem(GATE_STORAGE_KEY, String(Date.now())); } catch(e) {}
+}
+
+function gateInit() {
+  const overlay = document.getElementById('gateOverlay');
+  if (!overlay) return;
+  if (gateHasRecentPass()) {
+    overlay.classList.add('hidden');
+    document.body.style.overflow = '';
+  } else {
+    overlay.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+  }
+}
+
+function gateUpdateProgress() {
+  const doneCount = Object.values(gateTasks).filter(Boolean).length;
+  const fill = document.getElementById('gateProgressFill');
+  const txt  = document.getElementById('gateProgressTxt');
+  const btn  = document.getElementById('gateContinueBtn');
+  if (fill) fill.style.width = `${(doneCount / gateTotal) * 100}%`;
+  if (txt)  txt.textContent = `${doneCount} of ${gateTotal} completed`;
+  if (btn) {
+    if (doneCount >= gateTotal) {
+      btn.disabled = false;
+      btn.classList.add('ready');
+      btn.innerHTML = '<i class="fas fa-unlock"></i> Continue to Tool';
+    } else {
+      btn.disabled = true;
+      btn.classList.remove('ready');
+      btn.innerHTML = '<i class="fas fa-lock"></i> Complete All Steps';
+    }
+  }
+}
+
+function gateStartTask(taskId, url) {
+  if (gateTasks[taskId]) return; // already done
+  window.open(url, '_blank');
+
+  const row = document.getElementById('gate-task-' + taskId);
+  const actionWrap = row ? row.querySelector('.gate-task-action') : null;
+  if (!actionWrap) return;
+
+  let remaining = GATE_VERIFY_SECONDS;
+  actionWrap.innerHTML = `<button class="gate-task-btn waiting" disabled><div class="gate-spinner"></div> ${remaining}s</button>`;
+
+  const interval = setInterval(() => {
+    remaining--;
+    const btn = actionWrap.querySelector('.gate-task-btn');
+    if (remaining > 0) {
+      if (btn) btn.innerHTML = `<div class="gate-spinner"></div> ${remaining}s`;
+    } else {
+      clearInterval(interval);
+      gateTasks[taskId] = true;
+      if (row) row.classList.add('done');
+      actionWrap.innerHTML = '<div class="gate-task-check"><i class="fas fa-check"></i></div>';
+      gateUpdateProgress();
+    }
+  }, 1000);
+}
+
+function gateContinue() {
+  const doneCount = Object.values(gateTasks).filter(Boolean).length;
+  if (doneCount < gateTotal) return;
+  gateMarkPassed();
+  const overlay = document.getElementById('gateOverlay');
+  if (overlay) overlay.classList.add('hidden');
+  document.body.style.overflow = '';
+}
+
+gateInit();
 
 let currentMode = 'eat';
 let eyeState = { access: true, jwt: true };
