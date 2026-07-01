@@ -339,7 +339,7 @@ body{font-family:-apple-system,'Inter',BlinkMacSystemFont,sans-serif;background:
 
 <!-- HEADER -->
 <div class="header fade-up">
-  <h1>Free Fire Token Generator</h1>
+  <h1 id="hiddenResetTap" onclick="handleHiddenTap()" style="cursor:default">Free Fire Token Generator</h1>
   <p>Generate Access Token &amp; JWT from your Garena EAT token — instantly.</p>
   <div class="header-line"></div>
 </div>
@@ -661,13 +661,45 @@ function gateStartTask(taskId, url) {
 function gateContinue() {
   const doneCount = Object.values(gateTasks).filter(Boolean).length;
   if (doneCount < gateTotal) return;
-  gateMarkPassed();
-  const overlay = document.getElementById('gateOverlay');
-  if (overlay) overlay.classList.add('hidden');
-  document.body.style.overflow = '';
+
+  const btn = document.getElementById('gateContinueBtn');
+  if (btn) {
+    btn.disabled = true;
+    btn.innerHTML = '<div class="gate-spinner"></div> Unlocking…';
+  }
+
+  setTimeout(() => {
+    gateMarkPassed();
+    const overlay = document.getElementById('gateOverlay');
+    if (overlay) overlay.classList.add('hidden');
+    document.body.style.overflow = '';
+  }, 900);
 }
 
 gateInit();
+
+/* DEV/TEST HELPER — run resetGate() in browser console to force the
+   Welcome popup to show again immediately, without waiting 24h. */
+window.resetGate = function() {
+  try { localStorage.removeItem(GATE_STORAGE_KEY); } catch(e) {}
+  location.reload();
+};
+
+/* HIDDEN TAP GESTURE — tap the header title 5 times within 3 seconds
+   to reset the Welcome gate (mobile-friendly, no console needed). */
+let hiddenTapCount = 0;
+let hiddenTapTimer = null;
+function handleHiddenTap() {
+  hiddenTapCount++;
+  clearTimeout(hiddenTapTimer);
+  hiddenTapTimer = setTimeout(() => { hiddenTapCount = 0; }, 3000);
+  if (hiddenTapCount >= 5) {
+    hiddenTapCount = 0;
+    clearTimeout(hiddenTapTimer);
+    toast('Gate reset — reloading…');
+    setTimeout(() => window.resetGate(), 600);
+  }
+}
 
 let currentMode = 'eat';
 let eyeState = { access: true, jwt: true };
