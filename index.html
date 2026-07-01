@@ -396,10 +396,19 @@ function toast(msg, warn=false) {
 }
 function cp(txt) { navigator.clipboard.writeText(txt).then(() => toast('Copied!')).catch(()=>{}); }
 
-function toggleDrop() {
-  dropOpen = !dropOpen;
-  document.getElementById('dropList').classList.toggle('open', dropOpen);
-  document.getElementById('dropArr').style.transform = dropOpen ? 'rotate(180deg)' : '';
+function openDrop() {
+  dropOpen = true;
+  document.getElementById('dropList').classList.add('open');
+  document.getElementById('dropArr').style.transform = 'rotate(180deg)';
+}
+function closeDrop() {
+  dropOpen = false;
+  document.getElementById('dropList').classList.remove('open');
+  document.getElementById('dropArr').style.transform = '';
+}
+function toggleDrop(e) {
+  if (e) e.stopPropagation();
+  dropOpen ? closeDrop() : openDrop();
 }
 
 function pickDrop(el, mode, valText, iconClass) {
@@ -408,7 +417,7 @@ function pickDrop(el, mode, valText, iconClass) {
   document.getElementById('selVal').textContent = valText;
   document.getElementById('sel-mode-icon').innerHTML = `<i class="${iconClass}"></i>`;
   selectMode(mode);
-  toggleDrop();
+  closeDrop();
 }
 
 function selectMode(m) {
@@ -427,9 +436,7 @@ function selectMode(m) {
 window.addEventListener('click', function(e) {
   const wrap = document.querySelector('.pill-row');
   if (wrap && !wrap.contains(e.target)) {
-    dropOpen = false;
-    document.getElementById('dropList').classList.remove('open');
-    document.getElementById('dropArr').style.transform = '';
+    closeDrop();
   }
 });
 
