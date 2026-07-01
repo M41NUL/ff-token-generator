@@ -27,6 +27,44 @@ body{font-family:-apple-system,'Inter',BlinkMacSystemFont,sans-serif;background:
 /* SECTION */
 .section{margin:28px 16px 0}
 .section-label{font-size:12px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.6px;margin-bottom:10px;padding:0 4px}
+.section-label-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;padding:0 4px}
+.section-label-row .section-label{margin-bottom:0}
+.hist-btn{display:flex;align-items:center;gap:5px;background:rgba(255,107,0,.08);border:1px solid var(--orange-glow);color:var(--orange);border-radius:100px;padding:5px 11px;font-size:11px;font-weight:600;cursor:pointer;font-family:inherit}
+.hist-btn:active{opacity:.7}
+
+/* HISTORY SHEET */
+.hist-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:999;align-items:flex-end;backdrop-filter:blur(2px)}
+.hist-overlay.open{display:flex}
+.hist-sheet{background:#18181b;border:1px solid #3a3a3e;border-radius:20px 20px 0 0;width:100%;max-height:72vh;display:flex;flex-direction:column;animation:fadeUp .25s ease}
+.hist-hd{display:flex;align-items:center;justify-content:space-between;padding:16px;border-bottom:1px solid var(--sep);font-size:14px;font-weight:700}
+.hist-clear,.hist-close{background:rgba(255,255,255,.05);border:1px solid var(--sep);color:var(--text3);width:30px;height:30px;border-radius:9px;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0}
+.hist-clear:hover{color:var(--red);border-color:rgba(255,69,58,.3)}
+.hist-close:hover{color:var(--text)}
+.hist-list{overflow-y:auto;padding:8px 16px 24px}
+.hist-item{display:flex;align-items:center;gap:10px;padding:11px 0;border-bottom:1px solid rgba(56,56,58,.5)}
+.hist-item:last-child{border-bottom:none}
+.hist-ic{width:34px;height:34px;border-radius:9px;background:var(--orange-dim);border:1px solid var(--orange-glow);color:var(--orange);display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0}
+.hist-info{flex:1;min-width:0}
+.hist-nm{font-size:13px;font-weight:700}
+.hist-nm span{color:var(--text4);font-weight:500}
+.hist-meta{font-size:10.5px;color:var(--text4);margin-top:2px}
+.hist-tok{font-family:'Menlo','Monaco',monospace;font-size:10px;color:var(--text3);margin-top:4px;word-break:break-all}
+.hist-actions{display:flex;flex-direction:column;gap:6px;flex-shrink:0}
+.hist-act-btn{width:28px;height:28px;border-radius:8px;background:rgba(255,255,255,.05);border:1px solid var(--sep);color:var(--text3);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:11px}
+.hist-act-btn:hover{color:var(--orange);border-color:var(--orange-glow)}
+.hist-empty{text-align:center;padding:44px 20px;color:var(--text4);font-size:12.5px}
+
+/* QR SHEET */
+.qr-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:999;align-items:center;justify-content:center;backdrop-filter:blur(2px)}
+.qr-overlay.open{display:flex}
+.qr-sheet{background:#18181b;border:1px solid #3a3a3e;border-radius:18px;width:86%;max-width:320px;animation:fadeUp .25s ease}
+.qr-body{padding:22px 20px;display:flex;flex-direction:column;align-items:center;gap:13px}
+.qr-img{width:200px;height:200px;border-radius:20px;background:#fff;padding:14px;object-fit:contain}
+.qr-hint{font-size:11.5px;color:var(--text3);text-align:center;line-height:1.5}
+.qr-actions{display:flex;gap:8px;width:100%}
+.qr-dl,.qr-share{display:flex;align-items:center;justify-content:center;gap:6px;flex:1;background:var(--orange);color:#fff;border-radius:10px;padding:9px 12px;font-size:12.5px;font-weight:700;text-decoration:none;border:none;cursor:pointer;font-family:inherit}
+.qr-share{background:#111;border:1px solid var(--sep);color:var(--text2)}
+.qr-share:hover{border-color:var(--orange-glow);color:var(--orange)}
 
 /* CARD */
 .card{background:linear-gradient(145deg,#1e1e22,#18181b);border-radius:var(--rlg);border:1px solid #3a3a3e;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.06)}
@@ -135,6 +173,8 @@ body{font-family:-apple-system,'Inter',BlinkMacSystemFont,sans-serif;background:
 .tok-disp{margin:12px 14px;background:rgba(0,0,0,.3);border:1px dashed rgba(255,107,0,.25);border-radius:11px;padding:11px;font-family:'Menlo','Monaco',monospace;font-size:10.5px;color:var(--orange);word-break:break-all;line-height:1.6;min-height:40px}
 .cp-tok-btn{display:flex;align-items:center;justify-content:center;gap:6px;width:calc(100% - 28px);margin:0 14px 12px;height:36px;background:var(--orange);border:none;border-radius:10px;color:#fff;font-size:12px;font-weight:700;cursor:pointer;transition:all .2s;box-shadow:0 2px 12px rgba(255,107,0,.3)}
 .cp-tok-btn:hover{opacity:.88}
+.clip-note{margin:0 14px 12px;font-size:10px;color:var(--text4);line-height:1.4}
+.clip-note.counting{color:var(--orange);font-weight:600}
 .out-meta{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--sep);border-top:1px solid var(--sep)}
 .m-cell{background:#18181b;padding:10px 14px}
 .m-lbl{font-size:9.5px;color:var(--text4);text-transform:uppercase;letter-spacing:.5px;font-weight:600;margin-bottom:3px}
@@ -160,14 +200,28 @@ body{font-family:-apple-system,'Inter',BlinkMacSystemFont,sans-serif;background:
 .err-title{font-size:13px;font-weight:700;color:var(--red)}
 .err-sub{font-size:11px;color:var(--text3);margin-top:3px}
 
+/* SHARE TOOL CARD */
+.share-tool-card{background:linear-gradient(145deg,#1e1e22,#18181b);border:1px solid #3a3a3e;border-radius:var(--rlg);padding:18px 16px;margin:0 16px 22px;text-align:center;box-shadow:0 4px 24px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.06)}
+.share-tool-ico{width:44px;height:44px;border-radius:13px;background:var(--orange-dim);border:1px solid var(--orange-glow);color:var(--orange);display:flex;align-items:center;justify-content:center;font-size:19px;margin:0 auto 12px}
+.share-tool-ttl{font-size:15px;font-weight:700;color:var(--text);margin-bottom:5px}
+.share-tool-sub{font-size:11.5px;color:var(--text3);line-height:1.5;margin-bottom:16px}
+.share-tool-actions{display:flex;gap:9px}
+.share-tool-btn{flex:1;display:flex;align-items:center;justify-content:center;gap:7px;border-radius:11px;padding:11px 10px;font-size:12.5px;font-weight:700;cursor:pointer;font-family:inherit;border:none;transition:all .2s}
+.share-tool-btn.primary{background:var(--orange);color:#fff;box-shadow:0 4px 16px rgba(255,107,0,.3)}
+.share-tool-btn.primary:hover{opacity:.9}
+.share-tool-btn.secondary{background:#111;border:1px solid var(--sep);color:var(--text2)}
+.share-tool-btn.secondary:hover{border-color:var(--orange-glow);color:var(--orange)}
+.share-tool-btn:active{transform:scale(.96)}
+
 /* FOOTER */
 .footer{padding:28px 20px 40px;display:flex;flex-direction:column;align-items:center;gap:14px;border-top:1px solid var(--sep);margin-top:40px}
 .footer-links{display:flex;flex-wrap:wrap;justify-content:center;gap:7px}
 .footer-link{display:flex;align-items:center;gap:5px;background:var(--bg4);border:1px solid var(--sep);border-radius:100px;padding:5px 11px;font-size:11px;font-weight:500;color:var(--text2);text-decoration:none;transition:border-color .15s,color .15s;white-space:nowrap}
 .footer-link:hover{border-color:var(--orange);color:var(--orange)}
 .footer-link i{font-size:11px;flex-shrink:0}
-.footer-copy{font-size:10px;color:var(--text4);text-align:center;line-height:1.6;white-space:nowrap}
+.footer-copy{font-size:12px;color:var(--text3);text-align:center;line-height:1.65}
 .footer-copy strong{color:var(--orange)}
+.footer-version{color:var(--orange);font-weight:600}
 
 /* TOAST */
 .toast{position:fixed;top:20px;left:50%;transform:translateX(-50%) translateY(-80px);background:rgba(18,18,28,.96);backdrop-filter:blur(14px);border:1px solid #3a3a3e;border-radius:100px;padding:8px 18px;font-size:12.5px;font-weight:600;color:var(--text);display:flex;align-items:center;gap:7px;z-index:9999;transition:transform .4s cubic-bezier(.34,1.56,.64,1);box-shadow:0 8px 32px rgba(0,0,0,.5);white-space:nowrap}
@@ -196,7 +250,10 @@ body{font-family:-apple-system,'Inter',BlinkMacSystemFont,sans-serif;background:
 
 <!-- TOOL SECTION -->
 <div class="section fade-up-2">
-  <div class="section-label">Token Generator</div>
+  <div class="section-label-row">
+    <div class="section-label">Token Generator</div>
+    <button class="hist-btn" onclick="openHistory()"><i class="fas fa-clock-rotate-left"></i> History</button>
+  </div>
   <div class="card" style="overflow:visible">
 
     <!-- CUSTOM SELECT DROPDOWN -->
@@ -333,7 +390,11 @@ body{font-family:-apple-system,'Inter',BlinkMacSystemFont,sans-serif;background:
     <div style="padding:12px 14px 0">
       <div style="font-size:9.5px;color:var(--text4);text-transform:uppercase;letter-spacing:.5px;font-weight:600;margin-bottom:6px" id="tok-label">Token</div>
       <div class="tok-disp" id="tok-disp">—</div>
-      <button class="cp-tok-btn" onclick="copyTok()"><i class="fas fa-copy"></i> Copy Token</button>
+      <div style="display:flex;gap:8px;margin:0 0 8px">
+        <button class="cp-tok-btn" style="margin:0;width:auto;flex:1" onclick="copyTok()"><i class="fas fa-copy"></i> Copy Token</button>
+        <button class="cp-tok-btn" style="margin:0;width:44px;flex:0 0 44px;background:#111;border:1px solid var(--sep);box-shadow:none;padding:0" onclick="showQr()" title="Share as QR"><i class="fas fa-qrcode"></i></button>
+      </div>
+      <div class="clip-note"><span id="clipNoteText">Clipboard auto-clears in 10s after copy for your security.</span></div>
     </div>
     <div class="out-meta">
       <div class="m-cell"><div class="m-lbl">Nickname</div><div class="m-val" id="out-nick">—</div></div>
@@ -364,6 +425,50 @@ body{font-family:-apple-system,'Inter',BlinkMacSystemFont,sans-serif;background:
   </div>
 </div>
 
+<!-- HISTORY SHEET -->
+<div class="hist-overlay" id="histOverlay" onclick="closeHistoryOutside(event)">
+  <div class="hist-sheet">
+    <div class="hist-hd">
+      <span>Token History</span>
+      <div style="display:flex;gap:8px">
+        <button class="hist-clear" onclick="clearHistory()"><i class="far fa-trash-can"></i></button>
+        <button class="hist-close" onclick="closeHistory()"><i class="fas fa-xmark"></i></button>
+      </div>
+    </div>
+    <div class="hist-list" id="histList"></div>
+  </div>
+</div>
+
+<!-- QR MODAL -->
+<div class="qr-overlay" id="qrOverlay" onclick="closeQrOutside(event)">
+  <div class="qr-sheet">
+    <div class="hist-hd">
+      <span>Share via QR</span>
+      <button class="hist-close" onclick="closeQr()"><i class="fas fa-xmark"></i></button>
+    </div>
+    <div class="qr-body">
+      <canvas id="qrCanvas" width="260" height="260" style="display:none"></canvas>
+      <img id="qrImg" class="qr-img" src="" alt="QR code">
+      <div class="qr-hint" id="qrHint">Scan to copy this token on another device</div>
+      <div class="qr-actions">
+        <a id="qrDownload" class="qr-dl" download="ff-token-qr.png"><i class="fas fa-download"></i> Download</a>
+        <button class="qr-share" onclick="shareQr()"><i class="fas fa-share-nodes"></i> Share</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SHARE TOOL CARD -->
+<div class="share-tool-card fade-up-5">
+  <div class="share-tool-ico"><i class="fas fa-share-nodes"></i></div>
+  <div class="share-tool-ttl">Share This Tool</div>
+  <div class="share-tool-sub">Know someone who needs a Free Fire token? Share this website with them.</div>
+  <div class="share-tool-actions">
+    <button class="share-tool-btn primary" onclick="shareSite()"><i class="fas fa-share-nodes"></i> Share</button>
+    <button class="share-tool-btn secondary" onclick="showSiteQr()"><i class="fas fa-qrcode"></i> QR Code</button>
+  </div>
+</div>
+
 <!-- FOOTER -->
 <footer class="footer fade-up-5">
   <div class="footer-links">
@@ -373,18 +478,23 @@ body{font-family:-apple-system,'Inter',BlinkMacSystemFont,sans-serif;background:
     <a class="footer-link" href="mailto:devmainulislam@gmail.com"><i class="far fa-envelope"></i> Email</a>
   </div>
   <div class="footer-copy">
-    © 2026 Free Fire Token Generator — <strong>CODEX-M41NUL</strong>. All Rights Reserved.
+    © <span id="footYear">2026</span> Free Fire Token Generator - <span class="footer-version" id="footVersion">v2.1</span> — <strong>CODEX-M41NUL</strong>. All Rights Reserved.
   </div>
 </footer>
 
 <script>
 const API_ACCESS = 'https://ff-eat-token-to-access-token.vercel.app/Eat';
 const API_JWT    = 'https://ff-eat-to-jwt-bio-update-m41nul.vercel.app/api/verify-token';
+const APP_VERSION = 'v2.1'; // bump this on every update for easy tracking
 
 let currentMode = 'eat';
 let eyeState = { access: true, jwt: true };
 let tT;
 let dropOpen = false;
+
+/* Footer year — always current, never hardcoded */
+document.getElementById('footYear').textContent = new Date().getFullYear();
+document.getElementById('footVersion').textContent = APP_VERSION;
 
 function toast(msg, warn=false) {
   const t = document.getElementById('toast');
@@ -396,14 +506,66 @@ function toast(msg, warn=false) {
 }
 function cp(txt) { navigator.clipboard.writeText(txt).then(() => toast('Copied!')).catch(()=>{}); }
 
+let clipClearTimer = null;
+let clipCountdownInterval = null;
+const CLIP_CLEAR_SECONDS = 10;
+
+function resetClipNote() {
+  const note = document.getElementById('clipNoteText');
+  const wrap = document.querySelector('.clip-note');
+  if (note) note.textContent = `Clipboard auto-clears in ${CLIP_CLEAR_SECONDS}s after copy for your security.`;
+  if (wrap) wrap.classList.remove('counting');
+}
+
+function copySensitive(text, successMsg) {
+  if (!text || text === '—') { toast('Nothing to copy', true); return; }
+  navigator.clipboard.writeText(text).then(() => {
+    toast(successMsg || 'Copied! Auto-clears in 10s');
+    clearTimeout(clipClearTimer);
+    clearInterval(clipCountdownInterval);
+
+    let remaining = CLIP_CLEAR_SECONDS;
+    const note = document.getElementById('clipNoteText');
+    const wrap = document.querySelector('.clip-note');
+
+    if (wrap) wrap.classList.add('counting');
+    if (note) note.textContent = `Clipboard auto-clears in ${remaining}s…`;
+
+    clipCountdownInterval = setInterval(() => {
+      remaining--;
+      if (remaining > 0) {
+        if (note) note.textContent = `Clipboard auto-clears in ${remaining}s…`;
+      } else {
+        clearInterval(clipCountdownInterval);
+      }
+    }, 1000);
+
+    clipClearTimer = setTimeout(async () => {
+      clearInterval(clipCountdownInterval);
+      try {
+        const cur = await navigator.clipboard.readText();
+        if (cur === text) {
+          await navigator.clipboard.writeText(' ');
+        }
+      } catch(e) { /* clipboard read may be blocked - ignore silently */ }
+      if (note) note.textContent = 'Clipboard cleared.';
+      if (wrap) wrap.classList.remove('counting');
+    }, CLIP_CLEAR_SECONDS * 1000);
+  }).catch(() => toast('Copy failed', true));
+}
+
 function openDrop() {
   dropOpen = true;
-  document.getElementById('dropList').classList.add('open');
+  const dl = document.getElementById('dropList');
+  dl.classList.add('open');
+  dl.style.display = 'block';
   document.getElementById('dropArr').style.transform = 'rotate(180deg)';
 }
 function closeDrop() {
   dropOpen = false;
-  document.getElementById('dropList').classList.remove('open');
+  const dl = document.getElementById('dropList');
+  dl.classList.remove('open');
+  dl.style.display = 'none';
   document.getElementById('dropArr').style.transform = '';
 }
 function toggleDrop(e) {
@@ -416,21 +578,27 @@ function pickDrop(el, mode, valText, iconClass) {
   el.classList.add('active');
   document.getElementById('selVal').textContent = valText;
   document.getElementById('sel-mode-icon').innerHTML = `<i class="${iconClass}"></i>`;
-  selectMode(mode);
   closeDrop();
+  requestAnimationFrame(() => selectMode(mode));
 }
 
 function selectMode(m) {
   currentMode = m;
-  document.getElementById('section-access').style.display = m==='access' ? '' : 'none';
-  document.getElementById('section-jwt').style.display    = m==='jwt'    ? '' : 'none';
-  document.getElementById('section-eat').style.display    = m==='eat'    ? '' : 'none';
-  document.getElementById('gen-btn-wrap').style.display   = m==='eat' ? 'none' : '';
+  const set = (id, styleObj) => {
+    const el = document.getElementById(id);
+    if (el) Object.assign(el.style, styleObj);
+    return el;
+  };
+  set('section-access', { display: m==='access' ? '' : 'none' });
+  set('section-jwt',    { display: m==='jwt'    ? '' : 'none' });
+  set('section-eat',    { display: m==='eat'    ? '' : 'none' });
+  set('gen-btn-wrap',   { display: m==='eat' ? 'none' : '' });
   if (m !== 'eat') {
-    document.getElementById('gen-txt').textContent = m==='access' ? 'Generate Access Token' : 'Generate JWT Token';
+    const gt = document.getElementById('gen-txt');
+    if (gt) gt.textContent = m==='access' ? 'Generate Access Token' : 'Generate JWT Token';
   }
-  document.getElementById('out-box').style.display = 'none';
-  document.getElementById('err-box').style.display = 'none';
+  set('out-box', { display: 'none' });
+  set('err-box', { display: 'none' });
 }
 
 window.addEventListener('click', function(e) {
@@ -467,7 +635,7 @@ async function pasteInp(mode) {
 }
 function copyInp(mode) {
   const v = document.getElementById('eat-input-'+mode).value;
-  if (v) navigator.clipboard.writeText(v).then(() => toast('Copied!'));
+  copySensitive(v, 'Copied!');
 }
 function clearInp(mode) {
   document.getElementById('eat-input-'+mode).value = '';
@@ -487,23 +655,26 @@ function extractEat(raw) {
 function setLoading(btn, on) {
   if (on) {
     btn.disabled = true;
-    btn.innerHTML = '<div class="btn-spinner"></div><span>Generating…</span>';
+    btn.innerHTML = '<div class="btn-spinner"></div><span id="gen-txt">Generating…</span>';
   } else {
     btn.disabled = false;
     const lbl = currentMode==='access' ? 'Generate Access Token' : 'Generate JWT Token';
-    btn.innerHTML = `<i class="fas fa-unlock-alt"></i> <span>${lbl}</span>`;
+    btn.innerHTML = `<i class="fas fa-unlock-alt"></i> <span id="gen-txt">${lbl}</span>`;
   }
 }
 
+let currentTokenType = 'access'; // used for QR filename
+
 async function generate(btn) {
-  const raw = document.getElementById('eat-input-'+currentMode).value.trim();
+  const reqMode = currentMode; // lock in the mode this request belongs to
+  const raw = document.getElementById('eat-input-'+reqMode).value.trim();
   const ob  = document.getElementById('out-box');
   const eb  = document.getElementById('err-box');
   ob.style.display = 'none';
   eb.style.display = 'none';
 
   if (!raw) {
-    document.getElementById('inp-row-'+currentMode).classList.add('invalid');
+    document.getElementById('inp-row-'+reqMode).classList.add('invalid');
     toast('Please paste a token or URL first!', true);
     return;
   }
@@ -512,9 +683,10 @@ async function generate(btn) {
   setLoading(btn, true);
 
   try {
-    if (currentMode === 'access') {
+    if (reqMode === 'access') {
       const res  = await fetch(API_ACCESS + '?eat_token=' + encodeURIComponent(eat));
       const data = await res.json();
+      if (currentMode !== reqMode) return;
       if (data.status === 'success') {
         document.getElementById('tok-label').textContent = 'Access Token';
         document.getElementById('out-label').textContent = 'Access Token Generated';
@@ -522,15 +694,27 @@ async function generate(btn) {
         document.getElementById('out-nick').textContent  = data.account_nickname || '—';
         document.getElementById('out-reg').textContent   = data.region || '—';
         document.getElementById('out-uid').textContent   = data.account_id || '—';
+        currentTokenValue = data.access_token || '';
+        currentTokenType  = 'access';
+        saveHistoryEntry({
+          type: 'access',
+          token: currentTokenValue,
+          nick: data.account_nickname || '—',
+          region: data.region || '—',
+          uid: data.account_id || '—',
+          time: new Date().toLocaleString()
+        });
         ob.style.display = 'block';
         ob.scrollIntoView({ behavior:'smooth', block:'nearest' });
       } else {
+        if (currentMode !== reqMode) return;
         document.getElementById('err-sub').textContent = data.error || 'Invalid token or server error.';
         eb.style.display = 'block';
       }
     } else {
       const res  = await fetch(API_JWT + '?eat_token=' + encodeURIComponent(eat));
       const data = await res.json();
+      if (currentMode !== reqMode) return;
       if (data.success) {
         const acc = data.account || {};
         document.getElementById('tok-label').textContent = 'JWT Token';
@@ -539,14 +723,26 @@ async function generate(btn) {
         document.getElementById('out-nick').textContent  = acc.nickname || '—';
         document.getElementById('out-reg').textContent   = acc.region || '—';
         document.getElementById('out-uid').textContent   = acc.uid || '—';
+        currentTokenValue = data.jwt_token || '';
+        currentTokenType  = 'jwt';
+        saveHistoryEntry({
+          type: 'jwt',
+          token: currentTokenValue,
+          nick: acc.nickname || '—',
+          region: acc.region || '—',
+          uid: acc.uid || '—',
+          time: new Date().toLocaleString()
+        });
         ob.style.display = 'block';
         ob.scrollIntoView({ behavior:'smooth', block:'nearest' });
       } else {
+        if (currentMode !== reqMode) return;
         document.getElementById('err-sub').textContent = data.error || 'Invalid token or server error.';
         eb.style.display = 'block';
       }
     }
   } catch(e) {
+    if (currentMode !== reqMode) return;
     document.getElementById('err-sub').textContent = 'Network error. Please check your connection and try again.';
     eb.style.display = 'block';
   } finally {
@@ -556,8 +752,210 @@ async function generate(btn) {
 
 function copyTok() {
   const t = document.getElementById('tok-disp').textContent;
-  if (t && t !== '—') navigator.clipboard.writeText(t).then(() => toast('Token Copied!'));
+  copySensitive(t, 'Token Copied! Auto-clears in 10s');
 }
+
+/* ===== HISTORY ===== */
+let currentTokenValue = '';
+
+function loadHistory() {
+  try { return JSON.parse(localStorage.getItem('ff_token_history') || '[]'); }
+  catch(e) { return []; }
+}
+function saveHistoryEntry(entry) {
+  const list = loadHistory();
+  list.unshift(entry);
+  if (list.length > 20) list.length = 20;
+  try { localStorage.setItem('ff_token_history', JSON.stringify(list)); } catch(e) {}
+}
+function clearHistory() {
+  try { localStorage.removeItem('ff_token_history'); } catch(e) {}
+  renderHistory();
+  toast('History cleared');
+}
+function escHtml(s) {
+  return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+function renderHistory() {
+  const list = loadHistory();
+  const box = document.getElementById('histList');
+  if (!list.length) {
+    box.innerHTML = '<div class="hist-empty"><i class="far fa-clock" style="font-size:22px;display:block;margin-bottom:8px"></i>No tokens generated yet</div>';
+    return;
+  }
+  box.innerHTML = list.map((h, i) => `
+    <div class="hist-item">
+      <div class="hist-ic"><i class="fas fa-${h.type==='jwt'?'fingerprint':'unlock-keyhole'}"></i></div>
+      <div class="hist-info">
+        <div class="hist-nm">${escHtml(h.nick)} <span>· ${escHtml(h.region)}</span></div>
+        <div class="hist-meta">${h.type.toUpperCase()} · UID ${escHtml(h.uid)} · ${escHtml(h.time)}</div>
+        <div class="hist-tok">${escHtml(h.token.slice(0,42))}${h.token.length>42?'…':''}</div>
+      </div>
+      <div class="hist-actions">
+        <button class="hist-act-btn" onclick="copyHist(${i})"><i class="far fa-copy"></i></button>
+        <button class="hist-act-btn" onclick="qrHist(${i})"><i class="fas fa-qrcode"></i></button>
+      </div>
+    </div>
+  `).join('');
+}
+function copyHist(i) {
+  const h = loadHistory()[i];
+  if (h) copySensitive(h.token, 'Copied! Auto-clears in 10s');
+}
+function qrHist(i) {
+  const h = loadHistory()[i];
+  if (h) { closeHistory(); currentTokenType = h.type; qrMode = 'token'; showQrFor(h.token); }
+}
+function openHistory() { renderHistory(); document.getElementById('histOverlay').classList.add('open'); }
+function closeHistory() { document.getElementById('histOverlay').classList.remove('open'); }
+function closeHistoryOutside(e) { if (e.target.id === 'histOverlay') closeHistory(); }
+
+/* ===== QR SHARE ===== */
+let qrBlobUrl = null;
+let qrFileName = 'ff-token-qr.png';
+let qrMode = 'token'; // 'token' or 'site' — controls filename + share text
+const SITE_URL = 'https://ff-token-generator-m41nul.vercel.app';
+
+function roundRectPath(ctx, x, y, w, h, r) {
+  ctx.beginPath();
+  ctx.moveTo(x + r, y);
+  ctx.arcTo(x + w, y, x + w, y + h, r);
+  ctx.arcTo(x + w, y + h, x, y + h, r);
+  ctx.arcTo(x, y + h, x, y, r);
+  ctx.arcTo(x, y, x + w, y, r);
+  ctx.closePath();
+}
+
+async function shareSite() {
+  const shareData = {
+    title: 'Free Fire Token Generator',
+    text: `Generate your Free Fire tokens here\nWebsite: ${SITE_URL}`
+  };
+  try {
+    if (navigator.share) {
+      await navigator.share(shareData);
+    } else {
+      await navigator.clipboard.writeText(SITE_URL);
+      toast('Link copied! Sharing not supported here.');
+    }
+  } catch(e) {
+    if (e.name !== 'AbortError') toast('Share failed', true);
+  }
+}
+
+function showQr() { qrMode = 'token'; showQrFor(currentTokenValue); }
+
+function showSiteQr() {
+  qrMode = 'site';
+  showQrFor(SITE_URL);
+}
+
+function showQrFor(token) {
+  if (!token || token === '—') { toast('No token to share', true); return; }
+
+  const hint = document.getElementById('qrHint');
+  if (hint) {
+    hint.textContent = qrMode === 'site'
+      ? 'Scan to open this website on another device'
+      : 'Scan to copy this token on another device';
+  }
+
+  qrFileName = qrMode === 'site'
+    ? 'Free Fire Token Generator - Website QR.png'
+    : (currentTokenType === 'jwt'
+        ? 'Free Fire Token Generator jwt token.png'
+        : 'Free Fire Token Generator access.png');
+
+  const rawQrUrl = 'https://api.qrserver.com/v1/create-qr-code/?size=800x800&margin=8&ecc=H&data=' + encodeURIComponent(token);
+
+  const img = new Image();
+  img.crossOrigin = 'anonymous';
+  img.onload = () => {
+    const canvas = document.getElementById('qrCanvas');
+    const size = 800;
+    const border = 20; // slim white border around the QR
+    const radius = 56; // soft rounded corners (box shape, not circle), scaled with higher-res canvas
+    canvas.width = size;
+    canvas.height = size;
+    const ctx = canvas.getContext('2d');
+    ctx.imageSmoothingEnabled = false;
+
+    ctx.clearRect(0, 0, size, size);
+
+    // Rounded-rectangle clip (box with soft corners)
+    ctx.save();
+    roundRectPath(ctx, 0, 0, size, size, radius);
+    ctx.clip();
+
+    // White background fill (the box's white border)
+    ctx.fillStyle = '#ffffff';
+    ctx.fillRect(0, 0, size, size);
+
+    // Draw QR image inset by the border amount
+    const inner = size - border * 2;
+    ctx.drawImage(img, border, border, inner, inner);
+    ctx.restore();
+
+    // Thin subtle outline for definition
+    roundRectPath(ctx, 2, 2, size - 4, size - 4, radius);
+    ctx.lineWidth = 3;
+    ctx.strokeStyle = 'rgba(255,107,0,0.25)';
+    ctx.stroke();
+
+    canvas.toBlob((blob) => {
+      if (qrBlobUrl) URL.revokeObjectURL(qrBlobUrl);
+      qrBlobUrl = URL.createObjectURL(blob);
+      document.getElementById('qrImg').src = qrBlobUrl;
+      const dl = document.getElementById('qrDownload');
+      dl.href = qrBlobUrl;
+      dl.setAttribute('download', qrFileName);
+    }, 'image/png');
+  };
+  img.onerror = () => {
+    // Fallback: at least show the square QR if canvas step fails
+    document.getElementById('qrImg').src = rawQrUrl;
+    const dl = document.getElementById('qrDownload');
+    dl.href = rawQrUrl;
+    dl.setAttribute('download', qrFileName);
+    toast('Could not render round QR, showing default', true);
+  };
+  img.src = rawQrUrl;
+
+  document.getElementById('qrOverlay').classList.add('open');
+}
+
+async function shareQr() {
+  try {
+    if (!qrBlobUrl) { toast('QR not ready yet', true); return; }
+    const res = await fetch(qrBlobUrl);
+    const blob = await res.blob();
+    const file = new File([blob], qrFileName, { type: 'image/png' });
+
+    const shareText = qrMode === 'site'
+      ? `Generate your Free Fire tokens here\nWebsite: ${SITE_URL}`
+      : `Free Fire token QR code\nWebsite: ${SITE_URL}`;
+
+    if (navigator.canShare && navigator.canShare({ files: [file] })) {
+      await navigator.share({
+        files: [file],
+        title: 'Free Fire Token Generator',
+        text: shareText
+      });
+    } else if (navigator.share) {
+      await navigator.share({
+        title: 'Free Fire Token Generator',
+        text: shareText
+      });
+    } else {
+      toast('Sharing not supported on this device', true);
+    }
+  } catch(e) {
+    if (e.name !== 'AbortError') toast('Share failed', true);
+  }
+}
+
+function closeQr() { document.getElementById('qrOverlay').classList.remove('open'); }
+function closeQrOutside(e) { if (e.target.id === 'qrOverlay') closeQr(); }
 </script>
 </body>
 </html>
