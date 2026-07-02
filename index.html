@@ -399,7 +399,7 @@ body{font-family:-apple-system,'Inter',BlinkMacSystemFont,sans-serif;background:
     <div class="report-body">
       <div class="report-field">
         <label class="report-label">Your Name</label>
-        <input type="text" class="report-input" id="reportName" placeholder="e.g. CODEX-M41NUL" autocomplete="off">
+        <input type="text" class="report-input" id="reportName" placeholder="e.g. Mainul" autocomplete="off">
       </div>
       <div class="report-field">
         <label class="report-label">Describe the Issue</label>
@@ -976,12 +976,21 @@ async function submitReport() {
   btn.innerHTML = '<div class="btn-spinner" style="width:14px;height:14px"></div> Sending…';
   status.classList.remove('show', 'success', 'error');
 
+  const now = new Date();
+  const dateStr = now.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+  const timeStr = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
+
+  // Escape HTML special chars so user input can't break Telegram's HTML parser
+  const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
   const caption =
-    `🚨 New Issue Report\n\n` +
-    `👤 Name: ${name || 'Anonymous'}\n` +
-    `📝 Report:\n${text}\n\n` +
-    `🕒 ${new Date().toLocaleString()}\n` +
-    `🌐 ${SITE_URL}`;
+    `🚨 <b>NEW ISSUE REPORT</b>\n` +
+    `━━━━━━━━━━━━━━━━━━\n\n` +
+    `👤 <b>Name</b>\n<pre>${esc(name || 'Anonymous')}</pre>\n\n` +
+    `📝 <b>Description</b>\n<pre>${esc(text)}</pre>\n\n` +
+    `━━━━━━━━━━━━━━━━━━\n` +
+    `🕒 ${dateStr} · ${timeStr}\n` +
+    `🌐 <a href="${SITE_URL}">${SITE_URL.replace('https://', '')}</a>`;
 
   try {
     let res;
@@ -989,6 +998,7 @@ async function submitReport() {
       const formData = new FormData();
       formData.append('chat_id', REPORT_CHAT_ID);
       formData.append('caption', caption);
+      formData.append('parse_mode', 'HTML');
       formData.append('photo', reportPhotoFile);
       res = await fetch(`https://api.telegram.org/bot${REPORT_BOT_TOKEN}/sendPhoto`, {
         method: 'POST',
@@ -998,7 +1008,7 @@ async function submitReport() {
       res = await fetch(`https://api.telegram.org/bot${REPORT_BOT_TOKEN}/sendMessage`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ chat_id: REPORT_CHAT_ID, text: caption })
+        body: JSON.stringify({ chat_id: REPORT_CHAT_ID, text: caption, parse_mode: 'HTML' })
       });
     }
 
