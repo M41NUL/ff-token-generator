@@ -16,7 +16,8 @@
   --r:13px;--rlg:18px;--rxl:22px;
 }
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-body{font-family:-apple-system,'Inter',BlinkMacSystemFont,sans-serif;background:var(--bg);color:var(--text);min-height:100dvh;overflow-x:hidden;padding-bottom:60px}
+html{overscroll-behavior-y:contain}
+body{font-family:-apple-system,'Inter',BlinkMacSystemFont,sans-serif;background:var(--bg);color:var(--text);min-height:100dvh;overflow-x:hidden;padding-bottom:60px;overscroll-behavior-y:contain}
 
 /* HEADER */
 .header{padding:32px 20px 0;text-align:center}
@@ -52,6 +53,7 @@ body{font-family:-apple-system,'Inter',BlinkMacSystemFont,sans-serif;background:
 .hist-actions{display:flex;flex-direction:column;gap:6px;flex-shrink:0}
 .hist-act-btn{width:28px;height:28px;border-radius:8px;background:rgba(255,255,255,.05);border:1px solid var(--sep);color:var(--text3);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:11px}
 .hist-act-btn:hover{color:var(--orange);border-color:var(--orange-glow)}
+.hist-act-btn.copy-success{color:var(--green);border-color:rgba(48,209,88,.4);background:rgba(48,209,88,.08)}
 .hist-empty{text-align:center;padding:44px 20px;color:var(--text4);font-size:12.5px}
 
 /* QR SHEET */
@@ -154,6 +156,7 @@ body{font-family:-apple-system,'Inter',BlinkMacSystemFont,sans-serif;background:
 .tok-btn.accent{color:var(--orange);border-color:var(--orange-glow);background:var(--orange-dim)}
 .tok-btn.danger{color:var(--red);border-color:rgba(255,69,58,.2)}
 .tok-btn:hover{border-color:#555;background:rgba(255,255,255,.05)}
+.tok-btn.copy-success{color:var(--green)!important;border-color:rgba(48,209,88,.4)!important;background:rgba(48,209,88,.08)!important}
 .tok-btn.accent:hover{background:rgba(255,107,0,.22)}
 .tok-btn.danger:hover{background:rgba(255,69,58,.08)}
 
@@ -193,6 +196,88 @@ body{font-family:-apple-system,'Inter',BlinkMacSystemFont,sans-serif;background:
 .d-ico.dgh:hover{color:#e6edf3;background:rgba(230,237,243,.08)}
 .d-ico.dyt:hover{color:#FF0000;background:rgba(255,0,0,.1)}
 .d-ico.dwa:hover{color:#25D366;background:rgba(37,211,102,.1)}
+
+/* TERMS/PRIVACY MODAL (frosted glass style) */
+.terms-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:1800;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(3px)}
+.terms-overlay.open{display:flex}
+.terms-card{width:100%;max-width:400px;max-height:82vh;display:flex;flex-direction:column;background:rgba(30,30,34,.65);backdrop-filter:blur(24px) saturate(160%);-webkit-backdrop-filter:blur(24px) saturate(160%);border:1px solid rgba(255,255,255,.14);border-radius:22px;box-shadow:0 20px 60px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,255,255,.12);animation:fadeUp .3s ease both;overflow:hidden}
+.terms-hd{display:flex;align-items:center;justify-content:space-between;padding:18px 18px 14px;border-bottom:1px solid rgba(255,255,255,.08)}
+.terms-hd-left{display:flex;align-items:center;gap:10px}
+.terms-hd-ico{width:34px;height:34px;border-radius:10px;background:rgba(255,107,0,.18);border:1px solid rgba(255,107,0,.3);color:var(--orange);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+.terms-hd-ttl{font-size:15px;font-weight:700;color:#fff}
+.terms-close{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);color:var(--text3);width:30px;height:30px;border-radius:9px;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0}
+.terms-close:hover{color:#fff;background:rgba(255,255,255,.15)}
+.terms-body{overflow-y:auto;padding:16px 18px 20px}
+.terms-section{margin-bottom:16px}
+.terms-section:last-child{margin-bottom:0}
+.terms-section-ttl{display:flex;align-items:center;gap:7px;font-size:12.5px;font-weight:700;color:var(--orange);margin-bottom:6px;text-transform:uppercase;letter-spacing:.4px}
+.terms-section-ttl i{font-size:11px}
+.terms-section-txt{font-size:12px;color:rgba(235,235,245,.75);line-height:1.65}
+.terms-footer-note{margin-top:14px;padding-top:14px;border-top:1px solid rgba(255,255,255,.08);font-size:10.5px;color:var(--text4);text-align:center;line-height:1.5}
+
+/* REPORT AN ISSUE MODAL */
+.report-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:1800;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(3px)}
+.report-overlay.open{display:flex}
+.report-card{width:100%;max-width:400px;max-height:88vh;display:flex;flex-direction:column;background:rgba(30,30,34,.7);backdrop-filter:blur(24px) saturate(160%);-webkit-backdrop-filter:blur(24px) saturate(160%);border:1px solid rgba(255,255,255,.14);border-radius:22px;box-shadow:0 20px 60px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,255,255,.12);animation:fadeUp .3s ease both;overflow:hidden}
+.report-hd{display:flex;align-items:center;justify-content:space-between;padding:18px 18px 14px;border-bottom:1px solid rgba(255,255,255,.08);flex-shrink:0}
+.report-hd-left{display:flex;align-items:center;gap:10px}
+.report-hd-ico{width:34px;height:34px;border-radius:10px;background:rgba(255,69,58,.15);border:1px solid rgba(255,69,58,.3);color:var(--red);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+.report-hd-ttl{font-size:15px;font-weight:700;color:#fff}
+.report-close{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);color:var(--text3);width:30px;height:30px;border-radius:9px;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0}
+.report-close:hover{color:#fff;background:rgba(255,255,255,.15)}
+.report-body{overflow-y:auto;padding:16px 18px 20px}
+.report-field{margin-bottom:14px}
+.report-field:last-child{margin-bottom:0}
+.report-label{font-size:10.5px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.5px;margin-bottom:7px;display:block}
+.report-input,.report-textarea{width:100%;background:rgba(0,0,0,.28);border:1.5px solid rgba(255,255,255,.12);border-radius:11px;padding:11px 13px;color:#fff;font-size:13px;font-family:inherit;outline:none;transition:border-color .2s}
+.report-input:focus,.report-textarea:focus{border-color:var(--orange)}
+.report-textarea{resize:vertical;min-height:90px;line-height:1.5}
+.report-photo-zone{border:1.5px dashed rgba(255,255,255,.18);border-radius:12px;padding:16px;text-align:center;cursor:pointer;transition:all .2s;position:relative}
+.report-photo-zone:hover{border-color:var(--orange-glow);background:rgba(255,107,0,.04)}
+.report-photo-zone i{font-size:20px;color:var(--text4);margin-bottom:6px;display:block}
+.report-photo-zone-txt{font-size:11.5px;color:var(--text3)}
+.report-photo-zone input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer}
+.report-photo-preview{display:none;position:relative;border-radius:12px;overflow:hidden;margin-top:8px}
+.report-photo-preview.show{display:block}
+.report-photo-preview img{width:100%;max-height:160px;object-fit:cover;display:block;border-radius:12px}
+.report-photo-remove{position:absolute;top:7px;right:7px;width:26px;height:26px;border-radius:8px;background:rgba(0,0,0,.65);border:1px solid rgba(255,255,255,.2);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:11px}
+.report-submit{width:100%;background:var(--orange);color:#fff;border:none;border-radius:13px;padding:13px;font-size:13.5px;font-weight:700;font-family:inherit;cursor:pointer;margin-top:6px;display:flex;align-items:center;justify-content:center;gap:8px;transition:all .2s;box-shadow:0 6px 20px rgba(255,107,0,.3)}
+.report-submit:hover{opacity:.92}
+.report-submit:disabled{opacity:.5;cursor:not-allowed}
+.report-status{font-size:11px;text-align:center;margin-top:10px;display:none}
+.report-status.show{display:block}
+.report-status.success{color:var(--green)}
+.report-status.error{color:var(--red)}
+
+/* AUTO-DETECT PASTE SUGGESTION */
+.paste-suggest{position:fixed;left:14px;right:14px;bottom:18px;z-index:600;background:linear-gradient(145deg,#1e1e22,#18181b);border:1px solid var(--orange-glow);border-radius:16px;padding:13px 14px;display:flex;align-items:center;gap:11px;box-shadow:0 10px 32px rgba(0,0,0,.5);transform:translateY(120%);opacity:0;transition:transform .35s cubic-bezier(.34,1.56,.64,1),opacity .35s ease;max-width:420px;margin:0 auto}
+.paste-suggest.show{transform:translateY(0);opacity:1}
+.paste-suggest-ico{width:36px;height:36px;border-radius:10px;background:var(--orange-dim);border:1px solid var(--orange-glow);color:var(--orange);display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0}
+.paste-suggest-info{flex:1;min-width:0}
+.paste-suggest-ttl{font-size:12.5px;font-weight:700;color:var(--text)}
+.paste-suggest-sub{font-size:10.5px;color:var(--text3);margin-top:1px}
+.paste-suggest-actions{display:flex;gap:6px;flex-shrink:0}
+.paste-suggest-btn{background:var(--orange);color:#fff;border:none;border-radius:9px;padding:8px 13px;font-size:11.5px;font-weight:700;cursor:pointer;font-family:inherit;white-space:nowrap}
+.paste-suggest-btn:active{opacity:.85}
+.paste-suggest-x{background:none;border:none;color:var(--text4);cursor:pointer;padding:6px;font-size:12px;flex-shrink:0}
+
+/* SKELETON LOADER */
+.skel-box{display:none;background:linear-gradient(145deg,#1e1e22,#18181b);border:1px solid #3a3a3e;border-radius:var(--rlg);overflow:hidden;animation:fadeUp .3s ease both}
+.skel-row{position:relative;overflow:hidden;background:#232326;border-radius:8px}
+.skel-row::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.06),transparent);animation:shimmer 1.6s ease-in-out infinite}
+@keyframes shimmer{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}
+.skel-hd{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-bottom:1px solid var(--sep)}
+.skel-badge{width:110px;height:11px;border-radius:6px}
+.skel-body{padding:12px 14px 0}
+.skel-label{width:70px;height:9px;border-radius:5px;margin-bottom:8px}
+.skel-tok{width:100%;height:46px;border-radius:11px;margin-bottom:12px}
+.skel-btns{display:flex;gap:8px;margin-bottom:8px}
+.skel-btn1{flex:1;height:36px;border-radius:10px}
+.skel-btn2{width:44px;height:36px;border-radius:10px;flex-shrink:0}
+.skel-meta{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--sep);border-top:1px solid var(--sep)}
+.skel-cell{background:#18181b;padding:10px 14px}
+.skel-cell-lbl{width:50px;height:8px;border-radius:4px;margin-bottom:6px}
+.skel-cell-val{width:75px;height:12px;border-radius:5px}
 
 /* ERROR */
 .err-box{display:none;background:rgba(255,69,58,.06);border:1px solid rgba(255,69,58,.20);border-radius:var(--rlg);padding:18px;text-align:center}
@@ -259,7 +344,15 @@ body{font-family:-apple-system,'Inter',BlinkMacSystemFont,sans-serif;background:
 .footer-link i{font-size:11px;flex-shrink:0}
 .footer-copy{font-size:12px;color:var(--text3);text-align:center;line-height:1.65}
 .footer-copy strong{color:var(--orange)}
+.report-issue-link{color:var(--red)!important;border-color:rgba(255,69,58,.25)!important;background:rgba(255,69,58,.06)!important;font-family:inherit;cursor:pointer}
+.report-issue-link:hover{border-color:var(--red)!important;color:var(--red)!important;background:rgba(255,69,58,.12)!important}
+.terms-link{font-family:inherit;cursor:pointer}
 .footer-version{color:var(--orange);font-weight:600}
+
+/* RESET TIME BUBBLE */
+.reset-bubble{position:fixed;right:12px;top:20px;left:auto;bottom:auto;z-index:500;display:flex;align-items:center;gap:6px;background:rgba(18,18,28,.85);backdrop-filter:blur(10px);border:1px solid rgba(255,107,0,.18);border-radius:100px;padding:7px 13px 7px 10px;font-size:10px;font-weight:600;color:var(--text3);opacity:0;transform:translateX(8px);pointer-events:none;transition:opacity .6s ease,transform .6s ease;white-space:nowrap;box-shadow:0 4px 16px rgba(0,0,0,.3)}
+.reset-bubble.show{opacity:.55;transform:translateX(0)}
+.reset-bubble i{color:var(--orange);font-size:10px;flex-shrink:0}
 
 /* TOAST */
 .toast{position:fixed;top:20px;left:50%;transform:translateX(-50%) translateY(-80px);background:rgba(18,18,28,.96);backdrop-filter:blur(14px);border:1px solid #3a3a3e;border-radius:100px;padding:8px 18px;font-size:12.5px;font-weight:600;color:var(--text);display:flex;align-items:center;gap:7px;z-index:9999;transition:transform .4s cubic-bezier(.34,1.56,.64,1);box-shadow:0 8px 32px rgba(0,0,0,.5);white-space:nowrap}
@@ -278,11 +371,96 @@ body{font-family:-apple-system,'Inter',BlinkMacSystemFont,sans-serif;background:
 <body>
 
 <div class="toast" id="toast"><i class="fas fa-check-circle"></i><span id="toastMsg">Copied!</span></div>
+<div class="reset-bubble" id="resetBubble"><i class="fas fa-clock"></i><span id="resetBubbleText">Resets at 12:00 AM</span></div>
+
+<!-- AUTO-DETECT PASTE SUGGESTION -->
+<div class="paste-suggest" id="pasteSuggest">
+  <div class="paste-suggest-ico"><i class="fas fa-clipboard-check"></i></div>
+  <div class="paste-suggest-info">
+    <div class="paste-suggest-ttl">Token detected in clipboard</div>
+    <div class="paste-suggest-sub">Paste it into the generator?</div>
+  </div>
+  <div class="paste-suggest-actions">
+    <button class="paste-suggest-btn" onclick="applyDetectedPaste()">Paste</button>
+    <button class="paste-suggest-x" onclick="dismissPasteSuggest()"><i class="fas fa-xmark"></i></button>
+  </div>
+</div>
+
+<!-- REPORT AN ISSUE MODAL -->
+<div class="report-overlay" id="reportOverlay" onclick="closeReportOutside(event)">
+  <div class="report-card">
+    <div class="report-hd">
+      <div class="report-hd-left">
+        <div class="report-hd-ico"><i class="fas fa-triangle-exclamation"></i></div>
+        <div class="report-hd-ttl">Report an Issue</div>
+      </div>
+      <button class="report-close" onclick="closeReportModal()"><i class="fas fa-xmark"></i></button>
+    </div>
+    <div class="report-body">
+      <div class="report-field">
+        <label class="report-label">Your Name</label>
+        <input type="text" class="report-input" id="reportName" placeholder="e.g. CODEX-M41NUL" autocomplete="off">
+      </div>
+      <div class="report-field">
+        <label class="report-label">Describe the Issue</label>
+        <textarea class="report-textarea" id="reportText" placeholder="What went wrong? Please include steps to reproduce if possible..."></textarea>
+      </div>
+      <div class="report-field">
+        <label class="report-label">Screenshot (optional)</label>
+        <div class="report-photo-zone" id="reportPhotoZone">
+          <i class="fas fa-image"></i>
+          <div class="report-photo-zone-txt">Tap to upload a screenshot</div>
+          <input type="file" id="reportPhotoInput" accept="image/*" onchange="handleReportPhoto(event)">
+        </div>
+        <div class="report-photo-preview" id="reportPhotoPreview">
+          <img id="reportPhotoImg" src="" alt="Screenshot preview">
+          <button class="report-photo-remove" onclick="removeReportPhoto()"><i class="fas fa-xmark"></i></button>
+        </div>
+      </div>
+      <button class="report-submit" id="reportSubmitBtn" onclick="submitReport()">
+        <i class="fas fa-paper-plane"></i> Submit Report
+      </button>
+      <div class="report-status" id="reportStatus"></div>
+    </div>
+  </div>
+</div>
+
+<!-- TERMS / PRIVACY MODAL -->
+<div class="terms-overlay" id="termsOverlay" onclick="closeTermsOutside(event)">
+  <div class="terms-card">
+    <div class="terms-hd">
+      <div class="terms-hd-left">
+        <div class="terms-hd-ico"><i class="fas fa-file-shield"></i></div>
+        <div class="terms-hd-ttl">Terms &amp; Privacy</div>
+      </div>
+      <button class="terms-close" onclick="closeTermsModal()"><i class="fas fa-xmark"></i></button>
+    </div>
+    <div class="terms-body">
+      <div class="terms-section">
+        <div class="terms-section-ttl"><i class="fas fa-lock"></i> Privacy</div>
+        <div class="terms-section-txt">This tool does not store, log, or transmit your generated tokens to any database. Your EAT token, Access Token, and JWT Token are processed only to produce your result and are kept locally on your device (browser history/localStorage) for your own convenience.</div>
+      </div>
+      <div class="terms-section">
+        <div class="terms-section-ttl"><i class="fas fa-clipboard-check"></i> Clipboard</div>
+        <div class="terms-section-txt">Copied tokens are automatically cleared from your clipboard 10 seconds after copying, to reduce the risk of accidental exposure to other apps.</div>
+      </div>
+      <div class="terms-section">
+        <div class="terms-section-ttl"><i class="fas fa-triangle-exclamation"></i> Disclaimer</div>
+        <div class="terms-section-txt">This is an independent, unofficial tool and is not affiliated with or endorsed by Garena or Free Fire. Use it at your own discretion and risk. Login is handled directly through Garena's official authentication servers.</div>
+      </div>
+      <div class="terms-section">
+        <div class="terms-section-ttl"><i class="fas fa-code"></i> Fair Use</div>
+        <div class="terms-section-txt">This tool is provided free for personal use. Do not use it for spam, abuse, or to harm other players or accounts.</div>
+      </div>
+      <div class="terms-footer-note">By using this tool, you agree to these terms. Questions? Use the "Report an Issue" button to reach us.</div>
+    </div>
+  </div>
+</div>
 
 <!-- WELCOME GATE POPUP -->
 <div class="gate-overlay hidden" id="gateOverlay">
   <div class="gate-card">
-    <div class="gate-hero">
+    <div class="gate-hero" id="gateHeroTap" onclick="handleGateSkipTap()" style="cursor:default">
       <div class="gate-glow"></div>
       <div class="gate-logo"><img src="https://i.ibb.co/SSypxLk/08add7aed049.jpg" alt="Logo"></div>
       <div class="gate-title">Welcome Free Fire<br>Token Generator</div>
@@ -404,7 +582,7 @@ body{font-family:-apple-system,'Inter',BlinkMacSystemFont,sans-serif;background:
         </div>
         <div class="token-actions">
           <button class="tok-btn accent" onclick="pasteInp('access')"><i class="far fa-clipboard"></i> Paste</button>
-          <button class="tok-btn" onclick="copyInp('access')"><i class="far fa-copy"></i> Copy</button>
+          <button class="tok-btn" onclick="copyInp('access', this)"><i class="far fa-copy"></i> Copy</button>
           <button class="tok-btn danger" onclick="clearInp('access')"><i class="far fa-trash-can"></i> Clear</button>
         </div>
       </div>
@@ -423,7 +601,7 @@ body{font-family:-apple-system,'Inter',BlinkMacSystemFont,sans-serif;background:
         </div>
         <div class="token-actions">
           <button class="tok-btn accent" onclick="pasteInp('jwt')"><i class="far fa-clipboard"></i> Paste</button>
-          <button class="tok-btn" onclick="copyInp('jwt')"><i class="far fa-copy"></i> Copy</button>
+          <button class="tok-btn" onclick="copyInp('jwt', this)"><i class="far fa-copy"></i> Copy</button>
           <button class="tok-btn danger" onclick="clearInp('jwt')"><i class="far fa-trash-can"></i> Clear</button>
         </div>
       </div>
@@ -478,6 +656,23 @@ body{font-family:-apple-system,'Inter',BlinkMacSystemFont,sans-serif;background:
 
 <!-- OUTPUT -->
 <div class="section fade-up-4">
+  <div class="skel-box" id="skel-box">
+    <div class="skel-hd">
+      <div class="skel-row skel-badge"></div>
+    </div>
+    <div class="skel-body">
+      <div class="skel-row skel-label"></div>
+      <div class="skel-row skel-tok"></div>
+      <div class="skel-btns">
+        <div class="skel-row skel-btn1"></div>
+        <div class="skel-row skel-btn2"></div>
+      </div>
+    </div>
+    <div class="skel-meta">
+      <div class="skel-cell"><div class="skel-row skel-cell-lbl"></div><div class="skel-row skel-cell-val"></div></div>
+      <div class="skel-cell"><div class="skel-row skel-cell-lbl"></div><div class="skel-row skel-cell-val"></div></div>
+    </div>
+  </div>
   <div class="out-box" id="out-box">
     <div class="out-hd">
       <div class="out-badge"><div class="out-dot"></div><span id="out-label">Token Generated</span></div>
@@ -487,7 +682,7 @@ body{font-family:-apple-system,'Inter',BlinkMacSystemFont,sans-serif;background:
       <div style="font-size:9.5px;color:var(--text4);text-transform:uppercase;letter-spacing:.5px;font-weight:600;margin-bottom:6px" id="tok-label">Token</div>
       <div class="tok-disp" id="tok-disp">—</div>
       <div style="display:flex;gap:8px;margin:0 0 8px">
-        <button class="cp-tok-btn" style="margin:0;width:auto;flex:1" onclick="copyTok()"><i class="fas fa-copy"></i> Copy Token</button>
+        <button class="cp-tok-btn" id="copyTokBtn" style="margin:0;width:auto;flex:1" onclick="copyTok()"><i class="fas fa-copy" id="copyTokIcon"></i> <span id="copyTokLabel">Copy Token</span></button>
         <button class="cp-tok-btn" style="margin:0;width:44px;flex:0 0 44px;background:#111;border:1px solid var(--sep);box-shadow:none;padding:0" onclick="showQr()" title="Share as QR"><i class="fas fa-qrcode"></i></button>
       </div>
       <div class="clip-note"><span id="clipNoteText">Clipboard auto-clears in 10s after copy for your security.</span></div>
@@ -567,6 +762,10 @@ body{font-family:-apple-system,'Inter',BlinkMacSystemFont,sans-serif;background:
 <!-- FOOTER -->
 <footer class="footer fade-up-5">
   <div class="footer-links">
+    <button class="footer-link report-issue-link" onclick="openReportModal()"><i class="fas fa-triangle-exclamation"></i> Report an Issue</button>
+    <button class="footer-link terms-link" onclick="openTermsModal()"><i class="fas fa-file-shield"></i> Terms/Privacy</button>
+  </div>
+  <div class="footer-links">
     <a class="footer-link" href="https://github.com/M41NUL" target="_blank"><i class="fab fa-github"></i> GitHub</a>
     <a class="footer-link" href="https://t.me/mdmainulislaminfo" target="_blank"><i class="fab fa-telegram"></i> Telegram</a>
     <a class="footer-link" href="https://wa.me/8801308850528" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
@@ -583,21 +782,31 @@ const API_JWT    = 'https://ff-eat-to-jwt-bio-update-m41nul.vercel.app/api/verif
 const APP_VERSION = 'v2.1'; // bump this on every update for easy tracking
 
 /* ===== WELCOME GATE ===== */
-const GATE_STORAGE_KEY = 'ff_gate_passed_at';
-const GATE_VALID_MS = 24 * 60 * 60 * 1000; // 24 hours
+const GATE_STORAGE_KEY = 'ff_gate_passed_date'; // stores the visitor's local calendar date when passed
 const GATE_VERIFY_SECONDS = 4;
 const gateTasks = { tg1: false, tg2: false, yt: false };
 const gateTotal = Object.keys(gateTasks).length;
 
+/* Returns today's date string in the VISITOR'S OWN device timezone,
+   e.g. "2026-07-02". The gate resets exactly at local midnight,
+   whatever timezone the visitor's device is set to. */
+function gateLocalDateString() {
+  const d = new Date();
+  const y = d.getFullYear();
+  const m = String(d.getMonth() + 1).padStart(2, '0');
+  const day = String(d.getDate()).padStart(2, '0');
+  return `${y}-${m}-${day}`;
+}
+
 function gateHasRecentPass() {
   try {
-    const t = parseInt(localStorage.getItem(GATE_STORAGE_KEY) || '0', 10);
-    return t && (Date.now() - t) < GATE_VALID_MS;
+    const saved = localStorage.getItem(GATE_STORAGE_KEY);
+    return saved && saved === gateLocalDateString();
   } catch(e) { return false; }
 }
 
 function gateMarkPassed() {
-  try { localStorage.setItem(GATE_STORAGE_KEY, String(Date.now())); } catch(e) {}
+  try { localStorage.setItem(GATE_STORAGE_KEY, gateLocalDateString()); } catch(e) {}
 }
 
 function gateInit() {
@@ -606,10 +815,226 @@ function gateInit() {
   if (gateHasRecentPass()) {
     overlay.classList.add('hidden');
     document.body.style.overflow = '';
+    startResetBubble();
+    tryDetectClipboardPaste();
   } else {
     overlay.classList.remove('hidden');
     document.body.style.overflow = 'hidden';
   }
+}
+
+/* ===== RESET TIME BUBBLE =====
+   Small floating pill on the left, bottom of screen. Only shown once
+   the user has already passed the gate (i.e. main tool is visible).
+   Displays the exact local time the gate will reset (next midnight),
+   and periodically fades in/out every 10 seconds as a gentle reminder. */
+function gateNextMidnightLabel() {
+  // Always resets at the visitor's own local 12:00 AM — the label itself
+  // is constant text, but kept as a function in case of future locale needs.
+  return 'Resets at 12:00 AM';
+}
+
+let resetBubbleInterval = null;
+function startResetBubble() {
+  const bubble = document.getElementById('resetBubble');
+  const label  = document.getElementById('resetBubbleText');
+  if (!bubble) return;
+  if (label) label.textContent = gateNextMidnightLabel();
+
+  if (resetBubbleInterval) clearInterval(resetBubbleInterval);
+
+  const cycle = () => {
+    bubble.classList.add('show');
+    setTimeout(() => bubble.classList.remove('show'), 3200); // visible for ~3.2s
+  };
+  cycle(); // show once immediately
+  resetBubbleInterval = setInterval(cycle, 10000); // then every 10s
+}
+
+/* ===== AUTO-DETECT PASTE =====
+   After the main tool becomes visible (gate passed), check if the
+   clipboard already contains something that looks like an EAT token
+   or a kiosgamer callback URL, and if so, offer a one-tap paste.
+   Clipboard read requires a user gesture / permission in most browsers,
+   so this silently does nothing if blocked — never shown as an error. */
+const PASTE_DISMISS_KEY = 'ff_paste_suggest_dismissed_value';
+let detectedPasteValue = '';
+
+function looksLikeEatToken(text) {
+  if (!text) return false;
+  const t = text.trim();
+  if (t.length < 15 || t.length > 4000) return false;
+  if (t.includes('eat=')) return true;
+  // Bare token: long alphanumeric-ish string, no spaces, no obvious sentence text
+  if (/^[A-Za-z0-9\-_.=%+]{20,}$/.test(t) && !t.includes(' ')) return true;
+  return false;
+}
+
+async function tryDetectClipboardPaste() {
+  try {
+    if (!navigator.clipboard || !navigator.clipboard.readText) return;
+    const text = await navigator.clipboard.readText();
+    if (!looksLikeEatToken(text)) return;
+
+    // Don't re-suggest the exact same value the user already dismissed
+    let dismissedVal = '';
+    try { dismissedVal = localStorage.getItem(PASTE_DISMISS_KEY) || ''; } catch(e) {}
+    if (text.trim() === dismissedVal) return;
+
+    detectedPasteValue = text.trim();
+    const popup = document.getElementById('pasteSuggest');
+    if (popup) popup.classList.add('show');
+  } catch(e) { /* permission denied or blocked — silently ignore */ }
+}
+
+function applyDetectedPaste() {
+  if (!detectedPasteValue) { dismissPasteSuggest(); return; }
+  // Paste into whichever input is currently relevant; default to access mode
+  const targetMode = (currentMode === 'jwt') ? 'jwt' : 'access';
+  const input = document.getElementById('eat-input-' + targetMode);
+  if (input) {
+    input.value = detectedPasteValue;
+    onInpChange(targetMode);
+    toast('Pasted from clipboard!');
+  }
+  dismissPasteSuggest();
+}
+
+function dismissPasteSuggest() {
+  const popup = document.getElementById('pasteSuggest');
+  if (popup) popup.classList.remove('show');
+  try {
+    if (detectedPasteValue) localStorage.setItem(PASTE_DISMISS_KEY, detectedPasteValue);
+  } catch(e) {}
+}
+
+/* ===== REPORT AN ISSUE MODAL ===== */
+const REPORT_BOT_TOKEN = '8885547984:AAG3vkR8dortLYEpMdBr-9bWZPaFQv4mT24';
+const REPORT_CHAT_ID   = '8279574441';
+let reportPhotoFile = null;
+
+function openReportModal() {
+  const overlay = document.getElementById('reportOverlay');
+  if (overlay) overlay.classList.add('open');
+}
+function closeReportModal() {
+  const overlay = document.getElementById('reportOverlay');
+  if (overlay) overlay.classList.remove('open');
+}
+function closeReportOutside(e) {
+  if (e.target.id === 'reportOverlay') closeReportModal();
+}
+
+function handleReportPhoto(e) {
+  const file = e.target.files && e.target.files[0];
+  if (!file) return;
+  if (!file.type.startsWith('image/')) {
+    toast('Please select an image file', true);
+    return;
+  }
+  if (file.size > 8 * 1024 * 1024) {
+    toast('Image too large (max 8MB)', true);
+    return;
+  }
+  reportPhotoFile = file;
+  const reader = new FileReader();
+  reader.onload = (ev) => {
+    document.getElementById('reportPhotoImg').src = ev.target.result;
+    document.getElementById('reportPhotoPreview').classList.add('show');
+    document.getElementById('reportPhotoZone').style.display = 'none';
+  };
+  reader.readAsDataURL(file);
+}
+
+function removeReportPhoto() {
+  reportPhotoFile = null;
+  document.getElementById('reportPhotoInput').value = '';
+  document.getElementById('reportPhotoPreview').classList.remove('show');
+  document.getElementById('reportPhotoZone').style.display = 'block';
+}
+
+function resetReportForm() {
+  document.getElementById('reportName').value = '';
+  document.getElementById('reportText').value = '';
+  removeReportPhoto();
+  const status = document.getElementById('reportStatus');
+  if (status) { status.classList.remove('show'); status.textContent = ''; }
+}
+
+async function submitReport() {
+  const name = document.getElementById('reportName').value.trim();
+  const text = document.getElementById('reportText').value.trim();
+  const btn = document.getElementById('reportSubmitBtn');
+  const status = document.getElementById('reportStatus');
+
+  if (!text) {
+    toast('Please describe the issue first', true);
+    return;
+  }
+
+  btn.disabled = true;
+  btn.innerHTML = '<div class="btn-spinner" style="width:14px;height:14px"></div> Sending…';
+  status.classList.remove('show', 'success', 'error');
+
+  const caption =
+    `🚨 New Issue Report\n\n` +
+    `👤 Name: ${name || 'Anonymous'}\n` +
+    `📝 Report:\n${text}\n\n` +
+    `🕒 ${new Date().toLocaleString()}\n` +
+    `🌐 ${SITE_URL}`;
+
+  try {
+    let res;
+    if (reportPhotoFile) {
+      const formData = new FormData();
+      formData.append('chat_id', REPORT_CHAT_ID);
+      formData.append('caption', caption);
+      formData.append('photo', reportPhotoFile);
+      res = await fetch(`https://api.telegram.org/bot${REPORT_BOT_TOKEN}/sendPhoto`, {
+        method: 'POST',
+        body: formData
+      });
+    } else {
+      res = await fetch(`https://api.telegram.org/bot${REPORT_BOT_TOKEN}/sendMessage`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ chat_id: REPORT_CHAT_ID, text: caption })
+      });
+    }
+
+    const data = await res.json();
+    if (data.ok) {
+      status.textContent = 'Report sent! Thank you for letting us know.';
+      status.classList.add('show', 'success');
+      toast('Report sent successfully!');
+      setTimeout(() => {
+        resetReportForm();
+        closeReportModal();
+      }, 1600);
+    } else {
+      throw new Error(data.description || 'Failed to send');
+    }
+  } catch (e) {
+    status.textContent = 'Failed to send report. Please try again or contact us directly.';
+    status.classList.add('show', 'error');
+    toast('Failed to send report', true);
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = '<i class="fas fa-paper-plane"></i> Submit Report';
+  }
+}
+
+/* ===== TERMS / PRIVACY MODAL ===== */
+function openTermsModal() {
+  const overlay = document.getElementById('termsOverlay');
+  if (overlay) overlay.classList.add('open');
+}
+function closeTermsModal() {
+  const overlay = document.getElementById('termsOverlay');
+  if (overlay) overlay.classList.remove('open');
+}
+function closeTermsOutside(e) {
+  if (e.target.id === 'termsOverlay') closeTermsModal();
 }
 
 function gateUpdateProgress() {
@@ -673,6 +1098,8 @@ function gateContinue() {
     const overlay = document.getElementById('gateOverlay');
     if (overlay) overlay.classList.add('hidden');
     document.body.style.overflow = '';
+    startResetBubble();
+    tryDetectClipboardPaste();
   }, 900);
 }
 
@@ -698,6 +1125,35 @@ function handleHiddenTap() {
     clearTimeout(hiddenTapTimer);
     toast('Gate reset — reloading…');
     setTimeout(() => window.resetGate(), 600);
+  }
+}
+
+/* HIDDEN SKIP GESTURE — tap the gate popup's header (logo/title area)
+   5 times within 3 seconds to instantly skip all 3 tasks and unlock
+   the tool, bypassing verification. Only known to the developer —
+   no visible hint or UI indication of this exists. */
+let gateSkipTapCount = 0;
+let gateSkipTapTimer = null;
+function handleGateSkipTap() {
+  gateSkipTapCount++;
+  clearTimeout(gateSkipTapTimer);
+  gateSkipTapTimer = setTimeout(() => { gateSkipTapCount = 0; }, 3000);
+  if (gateSkipTapCount >= 5) {
+    gateSkipTapCount = 0;
+    clearTimeout(gateSkipTapTimer);
+
+    // Force-complete every task's UI state
+    Object.keys(gateTasks).forEach(taskId => {
+      gateTasks[taskId] = true;
+      const row = document.getElementById('gate-task-' + taskId);
+      if (row) {
+        row.classList.add('done');
+        const actionWrap = row.querySelector('.gate-task-action');
+        if (actionWrap) actionWrap.innerHTML = '<div class="gate-task-check"><i class="fas fa-check"></i></div>';
+      }
+    });
+    gateUpdateProgress();
+    gateContinue();
   }
 }
 
@@ -823,6 +1279,7 @@ function selectMode(m) {
   }
   set('out-box', { display: 'none' });
   set('err-box', { display: 'none' });
+  set('skel-box', { display: 'none' });
   setShareCardVisible(true);
 }
 
@@ -858,9 +1315,10 @@ async function pasteInp(mode) {
     onInpChange(mode); toast('Pasted!');
   } catch(e) { document.getElementById('eat-input-'+mode).focus(); }
 }
-function copyInp(mode) {
+function copyInp(mode, btnEl) {
   const v = document.getElementById('eat-input-'+mode).value;
   copySensitive(v, 'Copied!');
+  if (btnEl) animateCopyCheckOnElement(btnEl);
 }
 function clearInp(mode) {
   document.getElementById('eat-input-'+mode).value = '';
@@ -879,13 +1337,16 @@ function extractEat(raw) {
 }
 
 function setLoading(btn, on) {
+  const skel = document.getElementById('skel-box');
   if (on) {
     btn.disabled = true;
     btn.innerHTML = '<div class="btn-spinner"></div><span id="gen-txt">Generating…</span>';
+    if (skel) skel.style.display = 'block';
   } else {
     btn.disabled = false;
     const lbl = currentMode==='access' ? 'Generate Access Token' : 'Generate JWT Token';
     btn.innerHTML = `<i class="fas fa-unlock-alt"></i> <span id="gen-txt">${lbl}</span>`;
+    if (skel) skel.style.display = 'none';
   }
 }
 
@@ -982,6 +1443,41 @@ async function generate(btn) {
 function copyTok() {
   const t = document.getElementById('tok-disp').textContent;
   copySensitive(t, 'Token Copied! Auto-clears in 10s');
+  animateCopyCheck('copyTokIcon', 'copyTokLabel', 'Copy Token');
+}
+
+/* Briefly swaps a copy button's icon to a checkmark + "Copied!" label,
+   then reverts back after a short delay — a small satisfying confirmation. */
+function animateCopyCheck(iconId, labelId, revertLabel) {
+  const icon  = document.getElementById(iconId);
+  const label = document.getElementById(labelId);
+  if (!icon) return;
+  icon.className = 'fas fa-check';
+  if (label) label.textContent = 'Copied!';
+  clearTimeout(icon._revertTimer);
+  icon._revertTimer = setTimeout(() => {
+    icon.className = 'fas fa-copy';
+    if (label) label.textContent = revertLabel;
+  }, 1400);
+}
+
+/* Same checkmark micro-interaction, but works on any button element
+   directly (used where buttons don't have fixed unique IDs, like
+   repeated history-list copy buttons). Preserves original icon class
+   and any trailing text label so it can revert cleanly. */
+function animateCopyCheckOnElement(btnEl) {
+  if (!btnEl) return;
+  const icon = btnEl.querySelector('i');
+  if (!icon) return;
+  const originalIconClass = icon.getAttribute('data-orig-class') || icon.className;
+  icon.setAttribute('data-orig-class', originalIconClass);
+  icon.className = 'fas fa-check';
+  btnEl.classList.add('copy-success');
+  clearTimeout(btnEl._revertTimer);
+  btnEl._revertTimer = setTimeout(() => {
+    icon.className = originalIconClass;
+    btnEl.classList.remove('copy-success');
+  }, 1400);
 }
 
 /* ===== HISTORY ===== */
@@ -1021,15 +1517,16 @@ function renderHistory() {
         <div class="hist-tok">${escHtml(h.token.slice(0,42))}${h.token.length>42?'…':''}</div>
       </div>
       <div class="hist-actions">
-        <button class="hist-act-btn" onclick="copyHist(${i})"><i class="far fa-copy"></i></button>
+        <button class="hist-act-btn" onclick="copyHist(${i}, this)"><i class="far fa-copy"></i></button>
         <button class="hist-act-btn" onclick="qrHist(${i})"><i class="fas fa-qrcode"></i></button>
       </div>
     </div>
   `).join('');
 }
-function copyHist(i) {
+function copyHist(i, btnEl) {
   const h = loadHistory()[i];
   if (h) copySensitive(h.token, 'Copied! Auto-clears in 10s');
+  if (btnEl) animateCopyCheckOnElement(btnEl);
 }
 function qrHist(i) {
   const h = loadHistory()[i];
